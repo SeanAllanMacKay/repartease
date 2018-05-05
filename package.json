@@ -21,7 +21,6 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "semantic-ui": "^2.3.0",
     "semantic-ui-react": "^0.78.3",
     "socket.io": "^2.0.4"
   },
