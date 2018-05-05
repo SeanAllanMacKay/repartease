@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
-    "build": "webpack && cp src/index.html dist/index.html && node server.js --inline",
-    "build-prod": "webpack && cp src/index.html dist/index.html"
+    "postinstall": "npm run build",
+    "start": "node server.js",
+    "build": "webpack && cp src/index.html dist/index.html"
   },
   "author": "Sean MacKay",
   "license": "MIT",
