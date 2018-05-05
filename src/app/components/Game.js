@@ -33,7 +33,9 @@ export class Game extends React.Component{
 					<h1>Error: Game Not Found</h1>
 					<Button onClick={()=>{
 	                    forward(this.props.history, '/join-game')
-	                }}>Retry</Button>
+	                }}>
+	                	Retry
+	                </Button>
 				</Root>
 			)
 
