@@ -16,8 +16,9 @@ var DIST_DIR = path.join(__dirname, 'dist'),
 	io = socket(server)
 	game = io.of('/game')
 
-//the port the app will connect to
-const port = 8080
+const {
+	PORT
+} = process.env
 
 //connect to Database
 mongoose.connect('mongodb://SeanMacKay:Poopyis4gangstas@ds119489.mlab.com:19489/repartease')
@@ -34,7 +35,7 @@ db
 		//notify you've connected
 		console.log('Database Connected!')
 		//start server
-		server.listen(port, function (error){
+		server.listen( PORT || 8080, function (error){
 			//if there is an error
 			if(error){
 				console.log(error)
