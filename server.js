@@ -17,9 +17,15 @@ var DIST_DIR = path.join(__dirname, 'dist'),
 	game = io.of('/game')
 
 const PORT = process.env.PORT || 8080
+const {
+	db_user,
+	db_password,
+	db_url,
+	db_schema
+} = process.env
 
 //connect to Database
-mongoose.connect('mongodb://SeanMacKay:Poopyis4gangstas@ds119489.mlab.com:19489/repartease')
+mongoose.connect(`mongodb://${db_user}:${db_password}@${db_url}/${db_schema}`)
 
 //shorthand
 const db = mongoose.connection
