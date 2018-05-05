@@ -32,7 +32,7 @@ export class Footer extends React.Component {
 
         return (
             <nav style={footerStyle}>
-                <div style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <div style={{flex: 1, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     {players.map((player, index)=>(
                         <p
                         style={{color: '#ffffff'}}
