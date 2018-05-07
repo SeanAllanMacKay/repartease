@@ -5,6 +5,18 @@ import { Input } from 'semantic-ui-react'
 
 export class StartGame extends React.Component{
 	render(){
+
+		const containerStyle = {
+			width: 80 + '%',
+			marginLeft: 10 + '%',
+			marginTop: 40 + '%'
+		}
+
+		const buttonStyle = {
+			marginTop: 15 + '%',
+			marginBottom: 15 + '%'
+		}
+
 		const {
 				forward,
 				startGame
@@ -12,20 +24,27 @@ export class StartGame extends React.Component{
 		let name = ''
 		return (
 		 	<Root>
-		   		<h1>Start Game</h1>
-		        <div>
+		 		<div style={containerStyle}>
 					<Input 
+					fluid
+					size = 'massive'
+					style={buttonStyle}
 					placeholder='Name...'
 					onChange={event => {
 						name=event.target.value
 						}
 					}/>
-				</div>
-				<div>
-					<Button onClick={()=>{
+
+					<Button 
+					fluid
+					size = 'massive'
+					style={buttonStyle}
+					onClick={()=>{
 						startGame(name)
 						forward(this.props.history, '/waiting-room')
-					}}>Start Game</Button>
+					}}>
+						Start Game
+					</Button>
 				</div>
 			</Root>
 		);
