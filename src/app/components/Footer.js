@@ -3,18 +3,30 @@ import React from "react";
 
 export class Footer extends React.Component {
     render(){
-        //header style
+        //footer style
         const footerStyle = {
-            flex: 1,
             position:'absolute',
             left:0,
             bottom:0,
-            height: 10 + '%',
-            width: 99 + '%',
+            height: 50,
+            width: 100 + '%',
             padding: 5,
-            marginBottom: 5,
             backgroundColor: "#000000"
         };
+
+        const scoreStyle = {
+            color: '#ffffff', 
+            display: 'inline-block', 
+            paddingLeft: 10, 
+            paddingRight: 10,
+            paddingTop: 10
+        }
+
+        const containerStyle = {
+            overflowX: 'scroll', 
+            overflowY: 'hidden', 
+            whiteSpace: 'nowrap'
+        }
 
         const {
             players
@@ -32,10 +44,10 @@ export class Footer extends React.Component {
 
         return (
             <nav style={footerStyle}>
-                <div style={{flex: 1, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <div style={containerStyle}>
                     {players.map((player, index)=>(
                         <p
-                        style={{color: '#ffffff'}}
+                        style={scoreStyle}
                         key={index}>
                             {player.name}: {player.points}
                         </p>
