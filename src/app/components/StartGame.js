@@ -9,7 +9,12 @@ export class StartGame extends React.Component{
 		const containerStyle = {
 			width: 80 + '%',
 			marginLeft: 10 + '%',
-			marginTop: 40 + '%'
+			marginTop: 30 + '%'
+		}
+
+		const headerStyle = {
+			textAlign: 'center',
+			fontSize: 55
 		}
 
 		const buttonStyle = {
@@ -25,6 +30,7 @@ export class StartGame extends React.Component{
 		return (
 		 	<Root>
 		 		<div style={containerStyle}>
+		 			<h1 style={headerStyle}>Start Game</h1>
 					<Input 
 					fluid
 					size = 'massive'

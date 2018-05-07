@@ -34,40 +34,37 @@ export class JoinGame extends React.Component{
 	    	<Root>
 		    	<div style={containerStyle}>
 		    		<h1 style={headerStyle}>Join Game</h1>
-			        <div>
-						<Input 
-						fluid
-						size = 'huge'
-						style={buttonStyle}
-						placeholder='Name...'
-						onChange={event => {
-							name=event.target.value
-							}
-						}/>
-					</div>
-					<div>
-						<Input 
-						fluid
-						size = 'huge'
-						style={buttonStyle}
-						placeholder='GameCode...'
-						onChange={event => {
-							gameCode=event.target.value
-							}
-						}/>
-					</div>
-					<div>
-						<Button 
-						fluid
-						size = 'huge'
-						style={buttonStyle}
-						onClick={()=>{
-							forward(this.props.history, '/game')
-							joinGame(name, gameCode)
-						}}>
-							Join Game
-						</Button>
-					</div>
+					
+					<Input 
+					fluid
+					size = 'huge'
+					style={buttonStyle}
+					placeholder='Name...'
+					onChange={event => {
+						name=event.target.value
+						}
+					}/>
+					
+					<Input 
+					fluid
+					size = 'huge'
+					style={buttonStyle}
+					placeholder='GameCode...'
+					onChange={event => {
+						gameCode=event.target.value
+						}
+					}/>
+					
+					<Button 
+					fluid
+					size = 'huge'
+					style={buttonStyle}
+					onClick={()=>{
+						forward(this.props.history, '/game')
+						joinGame(name, gameCode)
+					}}>
+						Join Game
+					</Button>
 				</div>
 			</Root>
 	    );
