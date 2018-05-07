@@ -5,6 +5,23 @@ import { Input } from 'semantic-ui-react'
 
 export class JoinGame extends React.Component{
 	render(){
+
+		const containerStyle = {
+			width: 80 + '%',
+			marginLeft: 10 + '%',
+			marginTop: 20 + '%'
+		}
+
+		const headerStyle = {
+			textAlign: 'center',
+			fontSize: 60
+		}
+
+		const buttonStyle = {
+			marginTop: 15 + '%',
+			marginBottom: 15 + '%'
+		}
+
 		const {
 				forward,
 				joinGame
@@ -15,28 +32,42 @@ export class JoinGame extends React.Component{
 
 	    return (
 	    	<Root>
-	    		<h1>Join Game</h1>
-		        <div>
-					<Input 
-					placeholder='Name...'
-					onChange={event => {
-						name=event.target.value
-						}
-					}/>
-				</div>
-				<div>
-					<Input 
-					placeholder='GameCode...'
-					onChange={event => {
-						gameCode=event.target.value
-						}
-					}/>
-				</div>
-				<div>
-					<Button onClick={()=>{
-						forward(this.props.history, '/game')
-						joinGame(name, gameCode)
-					}}>Join Game</Button>
+		    	<div style={containerStyle}>
+		    		<h1 style={headerStyle}>Join Game</h1>
+			        <div>
+						<Input 
+						fluid
+						size = 'huge'
+						style={buttonStyle}
+						placeholder='Name...'
+						onChange={event => {
+							name=event.target.value
+							}
+						}/>
+					</div>
+					<div>
+						<Input 
+						fluid
+						size = 'huge'
+						style={buttonStyle}
+						placeholder='GameCode...'
+						onChange={event => {
+							gameCode=event.target.value
+							}
+						}/>
+					</div>
+					<div>
+						<Button 
+						fluid
+						size = 'huge'
+						style={buttonStyle}
+						onClick={()=>{
+							forward(this.props.history, '/game')
+							joinGame(name, gameCode)
+						}}>
+							Join Game
+						</Button>
+					</div>
 				</div>
 			</Root>
 	    );
