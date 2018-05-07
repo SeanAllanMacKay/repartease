@@ -13,7 +13,6 @@ import { WaitingRoom } from "./WaitingRoom";
 import { Game } from "./Game";
 import { ReJoin } from "./ReJoin";
 
-
 export class App extends React.Component{
 
 	constructor(props) {
