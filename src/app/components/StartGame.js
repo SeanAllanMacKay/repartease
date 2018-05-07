@@ -33,7 +33,7 @@ export class StartGame extends React.Component{
 		 			<h1 style={headerStyle}>Start Game</h1>
 					<Input 
 					fluid
-					size = 'massive'
+					size = 'huge'
 					style={buttonStyle}
 					placeholder='Name...'
 					onChange={event => {
@@ -43,7 +43,7 @@ export class StartGame extends React.Component{
 
 					<Button 
 					fluid
-					size = 'massive'
+					size = 'huge'
 					style={buttonStyle}
 					onClick={()=>{
 						startGame(name)

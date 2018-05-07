@@ -8,7 +8,12 @@ export class Home extends React.Component{
 		const containerStyle = {
 			width: 80 + '%',
 			marginLeft: 10 + '%',
-			marginTop: 40 + '%'
+			marginTop: 30 + '%'
+		}
+
+		const headerStyle = {
+			textAlign: 'center',
+			fontSize: 55
 		}
 
 		const buttonStyle = {
@@ -23,9 +28,10 @@ export class Home extends React.Component{
 	    return (
 	    	<Root>
 		        <div style={containerStyle}>
+		        	<h1 style={headerStyle}>Home</h1>
 					<Button 
 					fluid
-					size = 'massive'
+					size = 'huge'
 					style={buttonStyle}
 					onClick={()=>{forward(this.props.history, '/start-game')}}>
 						Start Game
@@ -33,7 +39,7 @@ export class Home extends React.Component{
 
 					<Button 
 					fluid
-					size = 'massive'
+					size = 'huge'
 					style={buttonStyle}
 					onClick={()=>{forward(this.props.history, '/join-game')}}>
 						Join Game
