@@ -6,8 +6,6 @@ import { withRouter } from "react-router-dom"
 import { Redirect } from 'react-router'
 import io from "socket.io-client";
 
-//import { Cookies } from "universal-cookie"
-
 import { Home } from "./Home";
 import { StartGame } from "./StartGame";
 import { JoinGame } from "./JoinGame";

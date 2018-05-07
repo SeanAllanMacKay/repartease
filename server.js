@@ -4,10 +4,6 @@ var path = require('path'),
 	http = require('http'),
 	socket = require('socket.io'),
 	mongoose = require('mongoose')
-	//expressValidator = require('express-validator'),
-	//expressSession = require('express-session'),
-	//MongoStore = require('connect-mongo')(expressSession),
-	//cookieParser = require('cookie-parser')
 
 //simplify to shorthand
 var DIST_DIR = path.join(__dirname, 'dist'),

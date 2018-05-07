@@ -23,9 +23,6 @@ export class Footer extends React.Component {
         while(players==undefined){
             return (
                 <nav style={footerStyle}>
-                    <p style={{color: '#ffffff'}}>
-                    whaddafuq
-                    </p>
                 </nav>
             );
         }

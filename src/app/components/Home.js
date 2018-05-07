@@ -19,7 +19,7 @@ export class Home extends React.Component{
 				<div>
 					<Button 
 					onClick={()=>{forward(this.props.history, '/join-game')}}>
-						Join
+						Join Game
 					</Button>
 				</div>
 			</Root>
