@@ -11,10 +11,16 @@ export class Home extends React.Component{
 	    return (
 	    	<Root>
 		        <div>
-					<Button onClick={()=>{forward(this.props.history, '/start-game')}}>Start Game</Button>
+					<Button 
+					onClick={()=>{forward(this.props.history, '/start-game')}}>
+						Start Game
+					</Button>
 				</div>
 				<div>
-					<Button onClick={()=>{forward(this.props.history, '/join-game')}}>Join Game</Button>
+					<Button 
+					onClick={()=>{forward(this.props.history, '/join-game')}}>
+						Join
+					</Button>
 				</div>
 			</Root>
 	    );

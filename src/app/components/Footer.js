@@ -23,16 +23,16 @@ export class Footer extends React.Component {
         while(players==undefined){
             return (
                 <nav style={footerStyle}>
-                    <div>
-                    </div >
+                    <p style={{color: '#ffffff'}}>
+                    whaddafuq
+                    </p>
                 </nav>
-                
             );
         }
 
         return (
-            <nav style={footerStyle}>
-                <div style={{flex: 1, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <nav style={footerStyle}>                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                <div style={{flex: 1, display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
                     {players.map((player, index)=>(
                         <p
                         style={{color: '#ffffff'}}
