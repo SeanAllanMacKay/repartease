@@ -29,21 +29,21 @@ export class Game extends React.Component{
 		if(gameNotFound){
 
 			return(
-				<Root>
+				<div>
 					<h1>Error: Game Not Found</h1>
 					<Button onClick={()=>{
 	                    forward(this.props.history, '/join-game')
 	                }}>
 	                	Retry
 	                </Button>
-				</Root>
+				</div>
 			)
 
 		}else{
 
 			if(!allIn){
 				return (
-			    	<Root>
+			    	<div>
 				        <h1>Waiting Room</h1>
 				        <h2>{gameCode}</h2>
 				        <h3>Players:</h3>
@@ -53,12 +53,11 @@ export class Game extends React.Component{
 		                        {player.name}
 		                    </h4>
 	                    ))}
-					</Root>
+					</div>
 			    )
 			}else if(turn.socket==player.socket){
 			    return (
-			    	<Root
-			    	players={players}>
+			    	<div>
 				        <h1>Your Turn</h1>
 				        <h2>{gameCode}</h2>
 				        <h2>Prompt goes here</h2>
@@ -83,12 +82,11 @@ export class Game extends React.Component{
 	                    		submit(currentSelection)
 	                    	}
 	                    }}>Submit</Button>
-					</Root>
+					</div>
 			    );
 			}else if(turn.socket!=player.socket && !submitted){
 				return (
-			    	<Root
-			    	players={players}>
+			    	<div>
 				        <h1>{turn.name}'s Turn</h1>
 				        <h2>{gameCode}</h2>
 				        <h2>Prompt goes here</h2>
@@ -101,17 +99,16 @@ export class Game extends React.Component{
 						<Button onClick={()=>{
 							submit(submission)
 						}}>Submit</Button>
-					</Root>
+					</div>
 			    );
 			}else if(turn.socket!=player.socket && submitted){
 				return (
-			    	<Root
-			    	players={players}>
+			    	<div>
 				        <h1>{turn.name}'s Turn</h1>
 				        <h2>{gameCode}</h2>
 				        <h2>Prompt goes here</h2>
 				        <h2>{submission}</h2>
-					</Root>
+					</div>
 			    );
 			}
 		}

@@ -17,7 +17,7 @@ export class WaitingRoom extends React.Component {
 
         if(players.length>1){
 			return (
-			   	<Root>
+			   	<div>
 			        <h1>Waiting Room</h1>
 			        <h2>{gameCode}</h2>
 			        <h3>Players:</h3>
@@ -32,11 +32,11 @@ export class WaitingRoom extends React.Component {
 						allIn()
 						forward(this.props.history, '/game')
 	                }}>All In</Button>
-				</Root>
+				</div>
 			)
 		}else{
 			return (
-			   	<Root>
+			   	<div>
 			        <h1>Waiting Room</h1>
 			        <h2>{gameCode}</h2>
 			        <h3>Players:</h3>
@@ -46,7 +46,7 @@ export class WaitingRoom extends React.Component {
 		                    {player.name}
 		                </h4>
 	                ))}
-				</Root>
+				</div>
 			)
 
 		}

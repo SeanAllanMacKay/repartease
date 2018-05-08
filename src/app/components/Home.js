@@ -26,7 +26,6 @@ export class Home extends React.Component{
 		}=this.props
 
 	    return (
-	    	<Root>
 		        <div style={containerStyle}>
 		        	<h1 style={headerStyle}>Home</h1>
 					<Button 
@@ -45,7 +44,6 @@ export class Home extends React.Component{
 						Join Game
 					</Button>
 				</div>
-			</Root>
 	    );
 	}
 }

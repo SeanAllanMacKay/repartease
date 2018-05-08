@@ -27,7 +27,6 @@ export class ReJoin extends React.Component{
 		}=this.props
 
 	    return (
-	    	<Root>
 		    	<div style={containerStyle}>
 			        <div>
 						<Button
@@ -50,7 +49,6 @@ export class ReJoin extends React.Component{
 						</Button>
 					</div>
 				</div>
-			</Root>
 	    );
 	}
 }

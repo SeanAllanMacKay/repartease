@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom"
 import { Redirect } from 'react-router'
 import io from "socket.io-client";
 
+import { Root } from "./Root"
 import { Home } from "./Home";
 import { StartGame } from "./StartGame";
 import { JoinGame } from "./JoinGame";
@@ -177,77 +178,80 @@ export class App extends React.Component{
 	render(){
 		//return statement
 		return (
-			//switch between these routes depending on url
-			<Switch>
-				//at route '/', render home component
-				<Route 
-				exact path={"/"}
-				render = {props=>(
-					<Home 
-						{...props} 
-						forward={this.forward}/>
-				)}/>
-				//at route '/start-game', render startgame component
-				<Route 
-				path={"/start-game"}
-				render= {props=>(
-					<StartGame 
-						{...props} 
-						forward={this.forward} 
-						startGame={this.startGame}
+			<Root
+				forward={this.forward} 
+				players={this.state.players}>
+				<Switch>
+					//at route '/', render home component
+					<Route 
+					exact path={"/"}
+					render = {props=>(
+						<Home 
+							{...props} 
+							forward={this.forward}/>
+					)}/>
+					//at route '/start-game', render startgame component
+					<Route 
+					path={"/start-game"}
+					render= {props=>(
+						<StartGame 
+							{...props} 
+							forward={this.forward} 
+							startGame={this.startGame}
+						/>
+					)}
 					/>
-				)}
-				/>
-				//at route '/joingame', render joingame component
-				<Route 
-				path={"/join-game"} 
-				render= {props=>(
-					this.checkSession() ? (
-						<ReJoin 
-							{...props} 
-							forward={this.forward} 
-							joinGame={this.joinGame}
-							newSession = {this.newSession}
-						/>
-						) : (
-						<JoinGame 
-							{...props} 
-							forward={this.forward} 
-							joinGame={this.joinGame}
-						/>
-					)
-				)}
-				/>
-				//at route '/waiting-room', render waitingroom component
-				<Route 
-				path={"/waiting-room"} 
-				render= {props=>(
-					<WaitingRoom 
-						{...props}
-						players={this.state.players} 
-						gameCode={this.state.gameCode}
-						allIn={this.allIn}
-						forward={this.forward}/>
-				)}/>
-				<Route 
-				path={"/game"} 
-				render= {props=>(
-					<Game
-						{...props}
-						forward={this.forward}
-						players={this.state.players}
-						player={this.state.player}
-						turn={this.state.turn}
-						gameCode={this.state.gameCode}
-						allIn={this.state.allIn}
-						submit={this.submit}
-						submissions={this.state.submissions}
-						submitted={this.state.submitted}
-						select={this.select}
-						currentSelection={this.state.currentSelection}
-						gameNotFound={this.state.gameNotFound}/>
-				)}/>
-			</Switch>
+					//at route '/joingame', render joingame component
+					<Route 
+					path={"/join-game"} 
+					render= {props=>(
+						this.checkSession() ? (
+							<ReJoin 
+								{...props} 
+								forward={this.forward} 
+								joinGame={this.joinGame}
+								newSession = {this.newSession}
+							/>
+							) : (
+							<JoinGame 
+								{...props} 
+								forward={this.forward} 
+								joinGame={this.joinGame}
+							/>
+						)
+					)}
+					/>
+					//at route '/waiting-room', render waitingroom component
+					<Route 
+					path={"/waiting-room"} 
+					render= {props=>(
+						<WaitingRoom 
+							{...props}
+							players={this.state.players} 
+							gameCode={this.state.gameCode}
+							allIn={this.allIn}
+							forward={this.forward}/>
+					)}/>
+					<Route 
+					path={"/game"} 
+					render= {props=>(
+						<Game
+							{...props}
+							forward={this.forward}
+							players={this.state.players}
+							player={this.state.player}
+							turn={this.state.turn}
+							gameCode={this.state.gameCode}
+							allIn={this.state.allIn}
+							submit={this.submit}
+							submissions={this.state.submissions}
+							submitted={this.state.submitted}
+							select={this.select}
+							currentSelection={this.state.currentSelection}
+							gameNotFound={this.state.gameNotFound}/>
+					)}/>
+				</Switch>
+			</Root>
 		);
 	}
 }

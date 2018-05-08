@@ -28,7 +28,6 @@ export class StartGame extends React.Component{
 			}=this.props
 		let name = ''
 		return (
-		 	<Root>
 		 		<div style={containerStyle}>
 		 			<h1 style={headerStyle}>Start Game</h1>
 					<Input 
@@ -52,7 +51,6 @@ export class StartGame extends React.Component{
 						Start Game
 					</Button>
 				</div>
-			</Root>
 		);
 	}
 }

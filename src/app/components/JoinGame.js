@@ -31,7 +31,6 @@ export class JoinGame extends React.Component{
 		let gameCode = ''
 
 	    return (
-	    	<Root>
 		    	<div style={containerStyle}>
 		    		<h1 style={headerStyle}>Join Game</h1>
 					
@@ -66,7 +65,6 @@ export class JoinGame extends React.Component{
 						Join Game
 					</Button>
 				</div>
-			</Root>
 	    );
 	}
 }
