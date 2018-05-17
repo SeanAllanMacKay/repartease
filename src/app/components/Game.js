@@ -11,9 +11,10 @@ export class Game extends React.Component{
 
 		const containerStyle = {
 			textAlign: 'center',
+			height: 90+'%',
 			width: 80 + '%',
 			marginLeft: 10 + '%',
-			marginTop: 20 + '%'
+			marginTop: 50
 		}
 
 		const header1Style = {
@@ -31,9 +32,28 @@ export class Game extends React.Component{
             overflowY: 'scroll'
 		}
 
+		const submissionContainerStyle = {
+			textAlign: 'center',
+			maxHeight: 150,
+			overflowX: 'hidden', 
+            overflowY: 'scroll'
+		}
+
 		const buttonStyle = {
 			marginTop: 15 + '%',
 			marginBottom: 15 + '%'
+		}
+
+		const gamecodeContainer = {
+			position:'absolute',
+			left: 50+'%',
+			bottom: 55
+		}
+
+		const gamecodeStyle = {
+			position:'relative',
+			left: -50+'%',
+			fontSize: 17
 		}
 
 		const {
@@ -71,81 +91,148 @@ export class Game extends React.Component{
 			if(!allIn){
 				return (
 			    	<div style={containerStyle}>
-			        <h1 
-			        style={header1Style}>
-			        	Waiting Room
-			        </h1>
+				        <h1 
+				        style={header1Style}>
+				        	Waiting Room
+				        </h1>
 
-			        <h2 
-			        style={header2Style}>
-			        	Game Code: {gameCode}
-			        </h2>
-			        <h3>
-				       	Players:
-				    </h3>
-			        <div style={playersContainerStyle}>
-				        {players.map((player, index)=>(
-			                <h4
-			                key={index}>
-			                    {player.name}
-			                </h4>
-		                ))}
-		            </div>
-				</div>
+				        <h2 
+				        style={header2Style}>
+				        	Game Code: {gameCode}
+				        </h2>
+				        <h3>
+					       	Players:
+					    </h3>
+				        <div style={playersContainerStyle}>
+					        {players.map((player, index)=>(
+				                <h4
+				                key={index}>
+				                    {player.name}
+				                </h4>
+			                ))}
+			            </div>
+					</div>
 			    )
 			}else if(turn.socket==player.socket){
 			    return (
 			    	<div>
-				        <h1>Your Turn</h1>
-				        <h2>{gameCode}</h2>
-				        <h2>Prompt goes here</h2>
-				        <h3>Submissions:</h3>
-				        <Form>
-					        {submissions.map((submission, index)=>(
-					        	<Form.Field>
-						        	<Checkbox
-						        	radio
-						        	name='checkboxRadioGroup'
-						        	key={index}
-						        	label={submission}
-						        	checked={currentSelection===submission}
-						        	onChange={()=>{
-						        		select(submission)
-						        	}}/>
-				                </Form.Field>
-		                    ))}
-	                    </Form>
-	                    <Button onClick={()=>{
-	                    	if(currentSelection){
-	                    		submit(currentSelection)
-	                    	}
-	                    }}>Submit</Button>
-					</div>
+				    	<div 
+				    	style={containerStyle}>
+					        <h1 
+					        style={header1Style}>
+					        	Your Turn
+					        </h1>
+					        
+					        <h2 style={header2Style}>
+					        	Prompt goes here
+					        </h2>
+					        <h2 style={header2Style}>
+					        	Submissions:
+					        </h2>
+					        <div style={submissionContainerStyle}>
+						        <Form>
+							        {submissions.map((submission, index)=>(
+							        	<Form.Field>
+								        	<Checkbox
+								        	radio
+								        	name='checkboxRadioGroup'
+								        	key={index}
+								        	label={submission}
+								        	checked={currentSelection===submission}
+								        	onChange={()=>{
+								        		select(submission)
+								        	}}/>
+						                </Form.Field>
+				                    ))}
+			                    </Form>
+			                </div>
+		                    <Button 
+		                    fluid
+							size = 'huge'
+			                style={buttonStyle}
+			                onClick={()=>{
+		                    	if(currentSelection){
+		                    		submit(currentSelection)
+		                    	}
+		                    }}>Submit</Button>
+		                    
+						</div>
+						<div
+		                style={gamecodeContainer}>
+			                <h2 
+			                style = {gamecodeStyle}>
+						   		Game Code: {gameCode}
+						  	</h2>
+						</div>
+				    </div>
 			    );
 			}else if(turn.socket!=player.socket && !submitted){
 				return (
 			    	<div>
-				        <h1>{turn.name}'s Turn</h1>
-				        <h2>{gameCode}</h2>
-				        <h2>Prompt goes here</h2>
-				        <Input 
-						placeholder='Answer Here...'
-						onChange={event => {
-							submission=event.target.value
-							}
-						}/>
-						<Button onClick={()=>{
-							submit(submission)
-						}}>Submit</Button>
+				    	<div
+				    	style={containerStyle}>
+					        <h1
+					        style={header1Style}>
+					        	{turn.name}'s Turn
+					        </h1>
+					        <h2
+					        style={header2Style}>
+					        	Prompt goes here
+					        </h2>
+					        <Input 
+							fluid
+							size = 'huge'
+							style={buttonStyle}
+							placeholder='Answer Here...'
+							onChange={event => {
+								submission=event.target.value
+								}
+							}/>
+							<Button 
+							fluid
+							size = 'huge'
+							style={buttonStyle}
+							onClick={()=>{
+								submit(submission)
+							}}>
+								Submit
+							</Button>
+						</div>
+						<div
+		                style={gamecodeContainer}>
+			                <h2 
+			                style = {gamecodeStyle}>
+						   		Game Code: {gameCode}
+						  	</h2>
+						</div>
 					</div>
 			    );
 			}else if(turn.socket!=player.socket && submitted){
 				return (
 			    	<div>
-				        <h1>{turn.name}'s Turn</h1>
-				        <h2>{gameCode}</h2>
-				        <h2>Prompt goes here</h2>
-				        <h2>{submission}</h2>
+				    	<div
+				    	style={containerStyle}>
+					        <h1
+					        style={header1Style}>
+					        	{turn.name}'s Turn
+					        </h1>
+					        <h2
+					        style={header2Style}>
+					        	Prompt goes here
+					        </h2>
+					        <div style={{height: 10}}/>
+					        <h2
+					        style={header2Style}>
+					        	Answer Submited!
+					        </h2>
+						</div>
+						<div
+		                style={gamecodeContainer}>
+			                <h2 
+			                style = {gamecodeStyle}>
+						   		Game Code: {gameCode}
+						  	</h2>
+						</div>
 					</div>
 			    );
 			}
