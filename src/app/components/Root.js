@@ -3,10 +3,26 @@ import React from "react";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer"
+import { Pulldown } from "./Pulldown"
 
 
 
 export class Root extends React.Component {
+
+    constructor(props) {
+        // need to call the parent class beffore anything else
+        super(props)
+        // initialize state - this should have all the application data
+        this.state = {
+            visible: false
+        };
+        this.togglePulldown = this.togglePulldown.bind(this)
+    }
+
+    togglePulldown(){
+        this.setState({visible: !this.state.visible})
+    }
+
     render(){
         const {
             forward,
@@ -15,13 +31,12 @@ export class Root extends React.Component {
         return (
             <div>
                 <Header
-                forward={forward}/>
+                forward={forward}
+                togglePulldown={this.togglePulldown}/>
              
-                <div>
-                    {this.props.children}
-                </div>
-
-                <Footer
+                <Pulldown
+                visible={this.state.visible}
+                display={this.props.children}
                 players={players}/>
             </div>
         );

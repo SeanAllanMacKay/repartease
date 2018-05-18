@@ -44,18 +44,6 @@ export class Game extends React.Component{
 			marginBottom: 15 + '%'
 		}
 
-		const gamecodeContainer = {
-			position:'absolute',
-			left: 50+'%',
-			bottom: 55
-		}
-
-		const gamecodeStyle = {
-			position:'relative',
-			left: -50+'%',
-			fontSize: 17
-		}
-
 		const {
 			gameCode,
 			forward,
@@ -157,13 +145,6 @@ export class Game extends React.Component{
 		                    }}>Submit</Button>
 		                    
 						</div>
-						<div
-		                style={gamecodeContainer}>
-			                <h2 
-			                style = {gamecodeStyle}>
-						   		Game Code: {gameCode}
-						  	</h2>
-						</div>
 				    </div>
 			    );
 			}else if(turn.socket!=player.socket && !submitted){
@@ -198,13 +179,6 @@ export class Game extends React.Component{
 								Submit
 							</Button>
 						</div>
-						<div
-		                style={gamecodeContainer}>
-			                <h2 
-			                style = {gamecodeStyle}>
-						   		Game Code: {gameCode}
-						  	</h2>
-						</div>
 					</div>
 			    );
 			}else if(turn.socket!=player.socket && submitted){
@@ -225,13 +199,6 @@ export class Game extends React.Component{
 					        style={header2Style}>
 					        	Answer Submited!
 					        </h2>
-						</div>
-						<div
-		                style={gamecodeContainer}>
-			                <h2 
-			                style = {gamecodeStyle}>
-						   		Game Code: {gameCode}
-						  	</h2>
 						</div>
 					</div>
 			    );

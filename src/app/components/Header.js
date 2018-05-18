@@ -1,8 +1,10 @@
 //imports
 import React from "react";
 import { Button } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu } from 'semantic-ui-react'
 
 export class Header extends React.Component {
+
     render(){
         const headerStyle = {
             textAlign: 'center',
@@ -14,7 +16,8 @@ export class Header extends React.Component {
         };
 
         const {
-            forward
+            forward,
+            togglePulldown
         }=this.props
 
         //return statement
@@ -23,7 +26,7 @@ export class Header extends React.Component {
                 <h1
                 style={{color: '#ffffff'}}
                 onClick={()=>{
-                    forward(this.props.history, '/waiting-room')
+                    togglePulldown()
                 }}>
                     Repartease
                 </h1>

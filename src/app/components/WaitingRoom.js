@@ -43,6 +43,7 @@ export class WaitingRoom extends React.Component {
             forward
         } = this.props
 
+        if(players.length>1){
 			return (
 			   	<div style={containerStyle}>
 			        <h1 
@@ -77,5 +78,31 @@ export class WaitingRoom extends React.Component {
 	                </Button>
 				</div>
 			)
+		}else{
+			return (
+			   	<div style={containerStyle}>
+			        <h1 
+			        style={header1Style}>
+			        	Waiting Room
+			        </h1>
+
+			        <h2 
+			        style={header2Style}>
+			        	Game Code: {gameCode}
+			        </h2>
+			        <h3>
+				       	Players:
+				    </h3>
+			        <div style={playersContainerStyle}>
+				        {players.map((player, index)=>(
+			                <h4
+			                key={index}>
+			                    {player.name}
+			                </h4>
+		                ))}
+		            </div>
+				</div>
+			)
+		}
 		}
 	}
