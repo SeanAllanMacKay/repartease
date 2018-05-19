@@ -11,7 +11,6 @@ export class Header extends React.Component {
             height: 50,
             width: 100 + '%',
             padding: 5,
-            marginBottom: 5,
             backgroundColor: "#000000"
         };
 
