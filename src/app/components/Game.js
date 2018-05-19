@@ -64,9 +64,17 @@ export class Game extends React.Component{
 		if(gameNotFound){
 
 			return(
-				<div>
-					<h1>Error: Game Not Found</h1>
-					<Button onClick={()=>{
+				<div 
+				style={containerStyle}>
+					<h1
+					style={header1Style}>
+						Error: Game Not Found
+					</h1>
+					<Button 
+					fluid
+					size = 'huge'
+			        style={buttonStyle}
+					onClick={()=>{
 	                    forward(this.props.history, '/join-game')
 	                }}>
 	                	Retry
