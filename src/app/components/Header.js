@@ -16,7 +16,8 @@ export class Header extends React.Component {
 
         const {
             forward,
-            togglePulldown
+            togglePulldown, 
+            allIn
         }=this.props
 
         //return statement
@@ -24,8 +25,10 @@ export class Header extends React.Component {
             <nav style={headerStyle}>
                 <h1
                 style={{color: '#ffffff'}}
-                onClick={()=>{
-                    togglePulldown()
+                onClick={()=>{ 
+                    if(allIn){
+                        togglePulldown()
+                    }
                 }}>
                     Repartease
                 </h1>

@@ -25,13 +25,15 @@ export class Root extends React.Component {
     render(){
         const {
             forward,
-            players
+            players,
+            allIn
         }=this.props
         return (
             <div>
                 <Header
                 forward={forward}
-                togglePulldown={this.togglePulldown}/>
+                togglePulldown={this.togglePulldown}
+                allIn={allIn}/>
              
                 <Pulldown
                 visible={this.state.visible}

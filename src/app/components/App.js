@@ -179,8 +179,9 @@ export class App extends React.Component{
 		//return statement
 		return (
 			<Root
-				forward={this.forward} 
-				players={this.state.players}>
+			forward={this.forward} 
+			players={this.state.players}
+			allIn={this.state.allIn}>
 				<Switch>
 					//at route '/', render home component
 					<Route 
