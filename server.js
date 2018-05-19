@@ -11,8 +11,10 @@ var DIST_DIR = path.join(__dirname, 'dist'),
 	server = http.createServer(app),
 	io = socket(server)
 	game = io.of('/game')
-
+//initialize port to environment vaiable, or default 8080
 const PORT = process.env.PORT || 8080
+
+//initialize environment variables
 const {
 	db_user,
 	db_password,
@@ -47,41 +49,11 @@ db
 		})
 	})
 
-//let proxyValue = false;
-//if(process.env.PROXY_VALUE == '1') {
-	//if there's a proxy, tell express to trust it.  used in production when serving node with nginx or similar
-//	app.set('trust proxy', 1);
-//	proxyValue = true;
-//} 
-
-//app.use(cookieParser())
-//app.use(expressValidator())
-
-//app.use(expressSession({ 
-//	secret: 'test', 
-//	store: new MongoStore({ 
-//		mongooseConnection: db,
-//		ttl: 60*60*24*3
-//	}), 
-//	saveUninitialized: false, 
-//	resave: false,
-//	proxy: proxyValue,
-//	cookie: { 
-//		secure: true,
-//		maxAge: 100000,
-//		httpOnly: false
-//	} 
-//}))
-
 //express will read from the "DIST_DIR" folder"
 app.use(express.static(DIST_DIR));
 
 //serve this
 app.get('*', function(req, res) {
-//	req.session.Id = "wassup"
-//	req.session.save()
-//	var id2=req.session.Id
-//	console.log('Cookies: ', req.cookies)
 	res.sendFile(path.join(DIST_DIR, "index.html"));
 });
 
@@ -143,6 +115,7 @@ game
 			let newGame =  new Game(game)
 			//save the game object
 			newGame.save()
+			//emit socket events
 			socket.emit('updatePlayers', newGame)
 			socket.emit('setPlayer', player)
 		})
@@ -175,15 +148,19 @@ game
 				}
 			})		
 		})
+		//on allIn event
 		.on('allIn', gameCode => {
 			socket.to(gameCode).emit('allIn');
 		})
+		//on submission event
 		.on('submission', (submission, gameCode) => {
 			socket.to(gameCode).emit('submission', submission);
 		})
+		//on select event
 		.on('select', (submission, gameCode) => {
 			socket.to(gameCode).emit('select', submission)
 		})
+		//on addPoint event
 		.on('addPoint', (gameCode, player) => {
 			Game.findOne({ 'code': gameCode }, function(err, doc) {
 				// if error
@@ -205,6 +182,7 @@ game
 				}
 			})
 		})
+		//on changeTurn event
 		.on('changeTurn', (gameCode) => {
 			Game.findOne({ 'code': gameCode }, function(err, doc) {
 				// if error
