@@ -39,6 +39,7 @@ export class JoinGame extends React.Component{
 					size = 'huge'
 					style={buttonStyle}
 					placeholder='Name...'
+					autoCapitalize = 'characters'
 					onChange={event => {
 						name=event.target.value
 						}
