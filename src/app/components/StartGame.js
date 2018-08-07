@@ -34,8 +34,8 @@ export class StartGame extends React.Component{
 					fluid
 					size = 'huge'
 					style={buttonStyle}
-					autoCapitalize = 'characters'
 					placeholder='Name...'
+					autoCapitalize = 'characters'
 					onChange={event => {
 						name=event.target.value
 						}

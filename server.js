@@ -70,7 +70,8 @@ var gameSchema = new Schema({
 
 //schemas for prompts
 var promptSchema = new Schema({
-	text: String
+	expansion: String,
+	prompt: String
 }, {collection: 'prompts'})
 
 //shorthand
@@ -115,9 +116,19 @@ game
 			let newGame =  new Game(game)
 			//save the game object
 			newGame.save()
-			//emit socket events
-			socket.emit('updatePlayers', newGame)
-			socket.emit('setPlayer', player)
+
+			Prompts.find({ 'expansion': 'standard' }, function(err, prompts) {
+				// if error
+				if (err) {
+					console.log(err)
+				}
+				//if no error
+				else{
+					socket.emit('prompts', prompts)
+					socket.emit('updatePlayers', newGame)
+					socket.emit('setPlayer', player)
+				}
+			})
 		})
 		//on joingame event
 		.on('joinGame', (name, gameCode) => {

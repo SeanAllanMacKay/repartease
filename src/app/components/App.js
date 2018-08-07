@@ -24,6 +24,8 @@ export class App extends React.Component{
 			//players is a empty array
 			currentSession: true,
 			players: [],
+			prompts: [],
+			currentPrompt: '',
 			gameCode: '',
 			player: '',
 			turn: null,
@@ -95,8 +97,18 @@ export class App extends React.Component{
 				}
 
 			})
+			.on('prompts', prompts =>{
+				let initPrompts = []
+				for(var i = 0; i<prompts.length; i++){
+					initPrompts = [...initPrompts, prompts[i].prompt]
+				}
+				this.setState({ prompts: initPrompts })
+			})
 			.on('setPlayer', player =>{
 				this.setState({ player: player })
+				if(this.state.player==this.state.turn){
+
+				}
 			})
 			.on('gameNotFound', () =>{
 				this.setState({ gameNotFound: true })
@@ -113,7 +125,16 @@ export class App extends React.Component{
 				}
 			})
 			.on('changeTurn', (newTurn) => {
+				//let tempPrompts = this.state.prompts
+				//let rand = Math.floor(Math.random() * tempPrompts.length)
+				//let newPrompt = tempPrompts[rand]
 
+				//this.setState({ currentPrompt: newPrompt })
+
+				//tempPrompts.splice(rand,1)
+
+				//this.socket.emit('updatePrompts', tempPrompts)
+				//this.setState({ prompts: tempPrompts })
 				this.setState({ 
 					submissions: [],
 					submitted: false,
@@ -122,7 +143,6 @@ export class App extends React.Component{
 					allIn: true,
 					turn: newTurn
 				})
-				this.socket.emit
 			})
 	}
 
