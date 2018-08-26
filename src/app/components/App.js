@@ -97,7 +97,7 @@ export class App extends React.Component{
 				}
 
 			})
-			.on('prompts', prompts =>{
+			.on('initPrompts', prompts =>{
 				let initPrompts = []
 				for(var i = 0; i<prompts.length; i++){
 					initPrompts = [...initPrompts, prompts[i].prompt]
@@ -114,6 +114,7 @@ export class App extends React.Component{
 				this.setState({ gameNotFound: true })
 			})
 			.on('allIn', () => {
+				this.socket.emit('newPrompt', {length: this.state.prompts.length, gameCode: this.state.gameCode})
 				this.setState({ allIn: true })
 			})
 			.on('submission', submission => {
@@ -124,17 +125,16 @@ export class App extends React.Component{
 					this.socket.emit('addPoint', this.state.gameCode, this.state.player)
 				}
 			})
+			.on('newPrompt', (location) => {
+				let newPrompt = this.state.prompts[location]
+
+				this.setState({ currentPrompt: newPrompt })
+			})
 			.on('changeTurn', (newTurn) => {
-				//let tempPrompts = this.state.prompts
-				//let rand = Math.floor(Math.random() * tempPrompts.length)
-				//let newPrompt = tempPrompts[rand]
+				if(this.state.player.socket==this.state.turn.socket){
+					this.socket.emit('newPrompt', {length: this.state.prompts.length, gameCode: this.state.gameCode})
+				}
 
-				//this.setState({ currentPrompt: newPrompt })
-
-				//tempPrompts.splice(rand,1)
-
-				//this.socket.emit('updatePrompts', tempPrompts)
-				//this.setState({ prompts: tempPrompts })
 				this.setState({ 
 					submissions: [],
 					submitted: false,
@@ -269,7 +269,8 @@ export class App extends React.Component{
 							submitted={this.state.submitted}
 							select={this.select}
 							currentSelection={this.state.currentSelection}
-							gameNotFound={this.state.gameNotFound}/>
+							gameNotFound={this.state.gameNotFound}
+							currentPrompt={this.state.currentPrompt}/>
 					)}/>
 				</Switch>
 			</Root>

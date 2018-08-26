@@ -65,7 +65,8 @@ var gameSchema = new Schema({
 	code: String,
 	players: [{name: String, points: String, socket: String}],
 	sockets: [String],
-	turn: {name: String, points: String, socket: String}
+	turn: {name: String, points: String, socket: String},
+	used: [String]
 }, {collection: 'games'})
 
 //schemas for prompts
@@ -110,7 +111,8 @@ game
 				code: gameCode,
 				players: [player],
 				sockets: [socket.id],
-				turn: player
+				turn: player,
+				used: []
 			}
 			// create mongoose object newgame
 			let newGame =  new Game(game)
@@ -124,7 +126,7 @@ game
 				}
 				//if no error
 				else{
-					socket.emit('prompts', prompts)
+					socket.emit('initPrompts', prompts)
 					socket.emit('updatePlayers', newGame)
 					socket.emit('setPlayer', player)
 				}
@@ -150,10 +152,21 @@ game
 					doc.sockets = [...doc.sockets, socket.id];
 					//save game
 					doc.save()
-					//emit update player event
-					socket.emit('updatePlayers', doc, name)
-					socket.to(gameCode).emit('updatePlayers', doc);
-					socket.emit('setPlayer', player)
+
+					Prompts.find({ 'expansion': 'standard' }, function(err, prompts) {
+						// if error
+						if (err) {
+							console.log(err)
+						}
+						//if no error
+						else{
+							socket.emit('initPrompts', prompts)
+							//emit update player event
+							socket.emit('updatePlayers', doc, name)
+							socket.to(gameCode).emit('updatePlayers', doc);
+							socket.emit('setPlayer', player)
+						}
+					})
 				}else{
 					socket.emit('gameNotFound')
 				}
@@ -214,6 +227,40 @@ game
 					}
 					socket.to(gameCode).emit('changeTurn', doc.turn)
 					socket.emit('changeTurn', doc.turn)
+				}
+			})
+		})
+		.on('newPrompt', (data) => {
+			let length = data.length
+			let gameCode = data.gameCode
+			Game.findOne({ 'code': gameCode }, function(err, doc) {
+				// if error
+				if (err) {
+					console.log(err)
+				}
+				//if no error
+				else if (doc){
+					var used = doc.used
+					let array = []
+
+					for(let i = 0; i<length; i++){
+						array.push(i)
+					}
+
+					for(let i = 0; i<used.length; i++){
+						console.log(used[i])
+						array.splice(array.indexOf(parseInt(used[i])), 1)
+					}
+
+					let location = array[Math.floor(Math.random() * array.length)]
+					doc.used.push(location)
+					if(doc.used.length>=length){
+						doc.used = []
+					}
+					doc.save()
+
+					socket.to(gameCode).emit('newPrompt', location)
+					socket.emit('newPrompt', location)
 				}
 			})
 		})

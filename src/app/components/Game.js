@@ -56,7 +56,8 @@ export class Game extends React.Component{
 			submitted,
 			currentSelection,
 			select,
-			gameNotFound
+			gameNotFound,
+			currentPrompt
 		}=this.props
 
 		let submission = null
@@ -120,7 +121,7 @@ export class Game extends React.Component{
 					        </h1>
 					        
 					        <h2 style={header2Style}>
-					        	Prompt goes here
+					        	{currentPrompt}
 					        </h2>
 					        <h2 style={header2Style}>
 					        	Submissions:
@@ -166,7 +167,7 @@ export class Game extends React.Component{
 					        </h1>
 					        <h2
 					        style={header2Style}>
-					        	Prompt goes here
+					        	{currentPrompt}
 					        </h2>
 					        <Input 
 							fluid
@@ -200,7 +201,7 @@ export class Game extends React.Component{
 					        </h1>
 					        <h2
 					        style={header2Style}>
-					        	Prompt goes here
+					        	{currentPrompt}
 					        </h2>
 					        <div style={{height: 10}}/>
 					        <h2
