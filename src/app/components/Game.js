@@ -14,7 +14,7 @@ export class Game extends React.Component{
 			height: 90+'%',
 			width: 80 + '%',
 			marginLeft: 10 + '%',
-			marginTop: 10 + '%'
+			marginTop: 15 + '%'
 		}
 
 		const header1Style = {

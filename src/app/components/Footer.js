@@ -9,7 +9,7 @@ export class Footer extends React.Component {
             position: 'fixed',
             height: 50,
             width: 100 + '%',
-            bottom: 0,
+            top: 60,
             textAlign: 'center'
         }
 
