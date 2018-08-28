@@ -3,6 +3,7 @@ import React from "react";
 
 import { Header } from "./Header"
 import { Pulldown } from "./Pulldown"
+import { Footer } from "./Footer"
 
 
 
@@ -26,20 +27,43 @@ export class Root extends React.Component {
         const {
             forward,
             players,
-            allIn
+            allIn,
+            gameCode
         }=this.props
-        return (
-            <div>
-                <Header
-                forward={forward}
-                togglePulldown={this.togglePulldown}
-                allIn={allIn}/>
-             
-                <Pulldown
-                visible={this.state.visible}
-                display={this.props.children}
-                players={players}/>
-            </div>
-        );
+
+        if(allIn){
+            return (
+                <div>
+                    <Header
+                    forward={forward}
+                    togglePulldown={this.togglePulldown}
+                    allIn={allIn}/>
+                 
+                    <Pulldown
+                    visible={this.state.visible}
+                    display={this.props.children}
+                    players={players}/>
+
+                    <Footer
+                    gameCode={gameCode}/>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Header
+                    forward={forward}
+                    togglePulldown={this.togglePulldown}
+                    allIn={allIn}
+                    gameCode={gameCode}/>
+                 
+                    <Pulldown
+                    visible={this.state.visible}
+                    display={this.props.children}
+                    players={players}/>
+                </div>
+            );
+
+        }
     }
 }

@@ -14,25 +14,40 @@ export class Header extends React.Component {
             backgroundColor: "#000000"
         };
 
+        const textStyle = {
+            color: '#ffffff'
+        };
+
+        const gamecodeStyle = {
+            position: 'fixed',
+            height: 50,
+            width: 100 + '%',
+            bottom: 0,
+            textAlign: 'center'
+        }
+
         const {
             forward,
             togglePulldown, 
-            allIn
+            allIn,
+            gameCode
         }=this.props
 
         //return statement
         return (
-            <nav style={headerStyle}>
-                <h1
-                style={{color: '#ffffff'}}
-                onClick={()=>{ 
-                    if(allIn){
-                        togglePulldown()
-                    }
-                }}>
-                    Repartease
-                </h1>
-            </nav>
+            <div>
+                <div style={headerStyle}>
+                    <h1
+                    style={textStyle}
+                    onClick={()=>{ 
+                        if(allIn){
+                            togglePulldown()
+                        }
+                    }}>
+                        Repartease 
+                    </h1>
+                </div>
+            </div>
         );
     }
 }

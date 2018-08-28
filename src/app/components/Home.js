@@ -8,7 +8,7 @@ export class Home extends React.Component{
 		const containerStyle = {
 			width: 80 + '%',
 			marginLeft: 10 + '%',
-			marginTop: 30 + '%'
+			marginTop: 20 + '%'
 		}
 
 		const headerStyle = {

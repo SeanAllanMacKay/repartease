@@ -201,7 +201,8 @@ export class App extends React.Component{
 			<Root
 			forward={this.forward} 
 			players={this.state.players}
-			allIn={this.state.allIn}>
+			allIn={this.state.allIn}
+			gameCode={this.state.gameCode}>
 				<Switch>
 					//at route '/', render home component
 					<Route 
