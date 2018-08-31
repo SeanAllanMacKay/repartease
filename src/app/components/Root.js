@@ -3,7 +3,7 @@ import React from "react";
 
 import { Header } from "./Header"
 import { Pulldown } from "./Pulldown"
-import { Footer } from "./Footer"
+import { GameCode } from "./GameCode"
 
 
 
@@ -44,7 +44,7 @@ export class Root extends React.Component {
                     display={this.props.children}
                     players={players}/>
 
-                    <Footer
+                    <GameCode
                     gameCode={gameCode}/>
                 </div>
             );

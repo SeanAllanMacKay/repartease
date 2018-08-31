@@ -1,12 +1,12 @@
 //imports
 import React from "react";
 
-export class Footer extends React.Component {
+export class GameCode extends React.Component {
 
     render(){
 
         const gamecodeStyle = {
-            position: 'fixed',
+            position: 'absolute',
             height: 50,
             width: 100 + '%',
             top: 60,
