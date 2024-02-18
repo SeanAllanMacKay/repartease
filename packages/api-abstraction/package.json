@@ -1,0 +1,7 @@
+{
+  "name": "@repo/api-abstraction",
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

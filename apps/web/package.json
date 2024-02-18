@@ -1,0 +1,40 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8081",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
+    "@phosphor-icons/react": "^2.0.15",
+    "@react-spring/web": "^9.7.3",
+    "@repo/api-abstraction": "workspace:*",
+    "@tanstack/react-query": "^5.14.6",
+    "date-fns": "^2.30.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.get": "^4.4.2",
+    "lodash.startcase": "^4.4.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-aria": "^3.30.0",
+    "react-dom": "^18",
+    "react-hook-form": "^7.49.0",
+    "socket.io-client": "^4.7.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/lodash.get": "^4.4.9",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.7",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "typescript": "^5"
+  }
+}

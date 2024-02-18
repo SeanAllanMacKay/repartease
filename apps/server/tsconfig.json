@@ -1,0 +1,17 @@
+{
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "paths": {
+      "@routers*": ["./src/routers*"],
+      "@actions*": ["./src/actions*"],
+      "@services*": ["./src/services*"],
+      "@database*": ["./src/database*"]
+    }
+  }
+}
