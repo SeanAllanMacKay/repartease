@@ -9,8 +9,8 @@
     "build:mobile": "turbo build --filter=\"...{./apps/mobile}\""
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repartease/eslint-config": "workspace:*",
+    "@repartease/typescript-config": "workspace:*",
     "prettier": "^3.1.0",
     "turbo": "latest"
   },
