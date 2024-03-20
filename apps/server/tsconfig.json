@@ -1,12 +1,16 @@
 {
   "include": ["**/*.ts"],
   "exclude": ["node_modules"],
+  "files": ["./src/global.d.ts"],
   "compilerOptions": {
+    "target": "ES6",
     "esModuleInterop": true,
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": "./",
     "resolveJsonModule": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "paths": {
       "@routers*": ["./src/routers*"],
       "@actions*": ["./src/actions*"],

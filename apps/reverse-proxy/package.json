@@ -1,5 +1,5 @@
 {
-  "name": "reverse-proxy",
+  "name": "@repartease/reverse-proxy",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",
@@ -14,23 +14,25 @@
     "ext": "ts, js"
   },
   "scripts": {
-    "dev": "set \"NODE_ENV=development\" && nodemon"
+    "dev": "set \"NODE_ENV=development\" && nodemon",
+    "build": "npx tsc"
   },
   "author": "Sean MacKay",
   "license": "ISC",
   "dependencies": {
+    "@ngrok/ngrok": "^1.2.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http": "0.0.1-security",
-    "http-proxy-middleware": "^2.0.6",
-    "tsconfig-paths": "^4.2.0"
+    "http-proxy-middleware": "^2.0.6"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repartease/eslint-config": "workspace:*",
+    "@repartease/typescript-config": "workspace:*",
     "@types/express": "^4.17.17",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.2"
   }
 }

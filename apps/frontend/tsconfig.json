@@ -1,0 +1,14 @@
+{
+  "extends": "@repartease/typescript-config/react-library.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "paths": {
+      "api-abstraction": ["./api-abstraction"],
+      "contexts*": ["./contexts*"],
+      "components*": ["./components*"],
+      "style*": ["./style*"],
+      "batteries-included*": ["./batteries-included*"]
+    }
+  }
+}

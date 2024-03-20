@@ -1,3 +1,4 @@
+import { config } from "..";
 import { isSuccess } from "./";
 
 import type { APIResponse } from "./";
@@ -12,7 +13,7 @@ export const POST = async <T = {}>({
   body,
 }: POSTProps): Promise<APIResponse & T> => {
   try {
-    const response = await fetch(`/api${endpoint}`, {
+    const response = await fetch(`${config?.host ?? ""}/api${endpoint}`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -29,6 +30,10 @@ export const POST = async <T = {}>({
   } catch (caught: any) {
     const { response } = caught;
 
-    throw await await response?.json?.();
+    if (response?.json) {
+      throw await response?.json?.();
+    }
+
+    throw caught;
   }
 };

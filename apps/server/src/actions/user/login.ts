@@ -5,19 +5,16 @@ import { User } from "@database/";
 import { createUser } from "./createUser";
 
 type LoginProps = {
-  username: string;
+  email: string;
   password: string;
 };
 
-export const login = async ({
-  username,
-  password,
-}: LoginProps): Promise<any> => {
+export const login = async ({ email, password }: LoginProps): Promise<any> => {
   try {
-    let user = await User.findOne({ username });
+    let user = await User.findOne({ email });
 
     if (!user) {
-      user = (await createUser({ username, password })).user;
+      user = (await createUser({ email, password })).user;
     } else {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
@@ -29,7 +26,7 @@ export const login = async ({
     return {
       status: 200,
       message: "Logged in",
-      user: { username: user.username, _id: user._id, games: [] },
+      user: { email: user.email, _id: user._id, games: user.games },
     };
   } catch (caught: any) {
     const {

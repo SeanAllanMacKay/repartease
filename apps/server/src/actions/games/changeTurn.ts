@@ -19,21 +19,22 @@ export const leaveGame = async ({
   }
 
   const playerIndex = game.players.findIndex(
-    (player) => player.playerId === playerId.toString(),
+    (player) => player.playerId === playerId.toString()
   );
 
   const nextPlayer = game.players.reduce(
     (newIndex, { status }, index) => {
-      if (index > playerIndex && status !== "inactive") {
+      if (index > playerIndex && status === "inactive") {
         return index;
       }
 
       return newIndex;
     },
-    game.players.findIndex((player) => player.status === "active"),
+    game.players.findIndex((player) => player.status === "active")
   );
 
-  game.activePlayer = game?.players?.[nextPlayer]?.playerId;
+  game.rounds[game.rounds.length - 1].activePlayer =
+    game?.players?.[nextPlayer]?.playerId;
 
   await game.save();
 

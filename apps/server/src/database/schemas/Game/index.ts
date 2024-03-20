@@ -20,7 +20,6 @@ const gameSchema = new Schema<GameDocument>(
       },
     ],
     status: { type: String, required: true },
-    activePlayer: String,
     rounds: [
       {
         prompt: String,
@@ -32,7 +31,7 @@ const gameSchema = new Schema<GameDocument>(
     createdAt: Date,
     updatedAt: Date,
   },
-  { collection: "Games" },
+  { collection: "Games" }
 );
 
 database.model("Game", gameSchema);

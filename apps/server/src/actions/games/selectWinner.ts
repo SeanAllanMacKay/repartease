@@ -10,7 +10,7 @@ export const selectWinner = async ({
   playerId: string;
   winnerId: string;
   gameCode: string;
-}): Promise<{ status: 200; message: string }> => {
+}): Promise<{ status: 200; message: string; game: any }> => {
   const game = await Game.findOne({
     gameCode,
     players: { $elemMatch: { playerId, status: { $ne: "inactive" } } },
@@ -24,20 +24,20 @@ export const selectWinner = async ({
 
   const winningResponse = currentRound.responses.find(
     ({ playerId: currentPlayerId }) =>
-      currentPlayerId.toString() === winnerId.toString(),
+      currentPlayerId.toString() === winnerId.toString()
   );
 
   winningResponse.isWinner = true;
   currentRound.status = "complete";
 
   const winningPlayer = game.players.find(
-    ({ playerId }) => winnerId === playerId.toString(),
+    ({ playerId }) => winnerId === playerId.toString()
   );
 
   winningPlayer.points += 1;
 
   const playerIndex = game.players.findIndex(
-    (player) => player.playerId === playerId.toString(),
+    (player) => player.playerId === playerId.toString()
   );
 
   let newTurnIndex = 0;
@@ -52,15 +52,14 @@ export const selectWinner = async ({
     }
   }
 
-  game.activePlayer = game?.players?.[newTurnIndex]?.playerId;
-
   game.rounds.push({
     prompt: await getPrompt(),
     responses: [],
     status: "submission",
+    activePlayer: game?.players?.[newTurnIndex]?.playerId,
   });
 
   await game.save();
 
-  return { status: 200, message: "Response submitted." };
+  return { status: 200, message: "Response submitted.", game };
 };

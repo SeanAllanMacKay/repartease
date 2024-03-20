@@ -1,0 +1,11 @@
+{
+  "display": "Node",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "target": "ES6",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  }
+}

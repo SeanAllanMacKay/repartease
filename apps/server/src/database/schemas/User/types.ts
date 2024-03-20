@@ -2,9 +2,11 @@ import type { Document, Model } from "mongoose";
 
 export interface UserType {
   _id: string;
-  username: string;
+  email: string;
   password: string;
+  isVerified: boolean;
   games: string[];
+  tickets: number;
 }
 
 //@ts-ignore

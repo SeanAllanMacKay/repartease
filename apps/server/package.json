@@ -14,16 +14,19 @@
     "ext": "ts, js"
   },
   "scripts": {
-    "dev": "set \"NODE_ENV=development\" && nodemon"
+    "dev": "set \"NODE_ENV=development\" && nodemon",
+    "build": "npx tsc"
   },
   "author": "Sean MacKay",
   "license": "ISC",
   "dependencies": {
+    "@repartease/validators": "workspace:*",
     "@sendgrid/mail": "^8.1.1",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -32,8 +35,10 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^6.3.0",
     "mongoose": "^7.2.1",
-    "openai": "^3.3.0",
-    "socket.io": "^4.6.2",
+    "node-schedule": "^2.1.1",
+    "openai": "^4.28.0",
+    "pusher": "^5.2.0",
+    "pusher-js": "8.4.0-rc2",
     "tsconfig-paths": "^4.2.0",
     "twilio": "^4.11.1",
     "uuid": "^9.0.0"
@@ -41,6 +46,7 @@
   "devDependencies": {
     "@types/node": "^20.2.5",
     "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.4.2"
   }
 }

@@ -26,32 +26,28 @@ export const getImagePrompt = async () => {
       `${total}${!index ? "" : ","} ${
         index === excludedWords.length - 1 ? "or " : " "
       }${current}`,
-    "",
+    ""
   )}. Don't use an animal.`;
 
-  const prompt = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: textPrompt,
+  const completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-0125",
+    messages: [{ role: "system", content: textPrompt }],
     max_tokens: 25,
-    temperature: 0.75,
+    temperature: 1.5,
   });
 
-  console.log("textPrompt", textPrompt);
-
-  console.log(
-    "prompt",
-    prompt?.data?.choices?.[0]?.text?.replace(/^\s+|\s+$/gm, ""),
+  let gamePrompt = completion?.choices?.[0]?.message?.content?.replace(
+    /^\s+|\s+$/gm,
+    ""
   );
 
-  const image = await openai.createImage({
+  const image = await openai.images.generate({
     prompt:
-      `In a hyper-realistic digital art style, show me this scene: "${prompt?.data?.choices?.[0]?.text?.replace(
-        /^\s+|\s+$/gm,
-        "",
-      )}"` || "",
+      `In a hyper-realistic digital art style, show me this scene: "${gamePrompt}"` ||
+      "",
     n: 1,
     size: "256x256",
   });
 
-  return image?.data?.data?.[0]?.url;
+  return image?.data?.[0]?.url;
 };

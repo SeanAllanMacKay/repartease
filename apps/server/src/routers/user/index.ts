@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { createUser } from "@actions/user";
 
-import { auth, MAX_AGE, verifyToken } from "@services/auth";
+import { verifyToken } from "@services/auth";
 
 import loginRouter from "./login";
 import logoutRouter from "./logout";
@@ -16,11 +16,11 @@ router
   .post(async (req, res) => {
     try {
       const {
-        body: { username, password },
+        body: { email, password },
       } = req;
 
       const { status, message, user } = await createUser({
-        username,
+        email,
         password,
       });
 
@@ -31,7 +31,7 @@ router
       return res.status(status).send({ error });
     }
   })
-  .get(verifyToken, async (req, res) => {
+  .get(async (req, res) => {
     try {
       const { user } = req;
 

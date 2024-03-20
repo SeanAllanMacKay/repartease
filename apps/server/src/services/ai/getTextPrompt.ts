@@ -7,16 +7,16 @@ export const getTextPrompt = async () => {
     textAdjectives[Math.floor(Math.random() * textAdjectives.length)]
   } Quiplash prompt that isn't a comparison and doesn't use underscores`;
 
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: openAIPrompt,
+  const completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-0125",
+    messages: [{ role: "system", content: openAIPrompt }],
     max_tokens: 25,
     temperature: 1,
   });
 
-  let gamePrompt = completion?.data?.choices?.[0]?.text?.replace(
+  let gamePrompt = completion?.choices?.[0]?.message?.content?.replace(
     /^\s+|\s+$/gm,
-    "",
+    ""
   );
 
   // @ts-ignore

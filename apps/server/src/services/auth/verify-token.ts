@@ -24,7 +24,7 @@ export const verifyToken: RequestHandler = async (req, res, next) => {
   }
 
   //@ts-ignore
-  req.user = { username: user.username, _id: user._id, games: user.games };
+  req.user = { email: user.email, _id: user._id, games: user.games };
 
   next();
 };

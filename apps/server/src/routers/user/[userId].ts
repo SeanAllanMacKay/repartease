@@ -12,14 +12,14 @@ router
     try {
       const {
         user,
-        body: { username },
+        body: { email },
       } = req;
 
       const {
         status,
         message,
         user: updatedUser,
-      } = await updateUser({ username, userId: user._id });
+      } = await updateUser({ email, userId: user._id });
 
       return res.status(status).send({ message, user: updatedUser });
     } catch (caught) {

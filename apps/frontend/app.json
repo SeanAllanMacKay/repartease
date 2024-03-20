@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "repartease",
+    "slug": "repartease",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.seanmackay.repartease"
+    },
+    "web": {
+      "output": "single",
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "63453c7b-2733-40bc-a016-6c240f2d8a45"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/63453c7b-2733-40bc-a016-6c240f2d8a45"
+    },
+    "plugins": ["expo-router"],
+    "experiments": { "tsconfigPaths": true }
+  }
+}

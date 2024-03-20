@@ -4,20 +4,30 @@ import bcrypt from "bcryptjs";
 
 import { User } from "@database/";
 
+import { isEmailInvalid, isPasswordInvalid } from "@repartease/validators";
+
 type CreateUserProps = {
-  username: string;
+  email: string;
   password: string;
 };
 
 export const createUser = async ({
-  username,
+  email,
   password,
 }: CreateUserProps): Promise<any> => {
   try {
-    const usernameTaken = await User.findOne({ username });
+    if (isEmailInvalid(email)) {
+      throw { status: 400, error: "Invalid email" };
+    }
 
-    if (usernameTaken) {
-      throw { status: 409, error: "Username taken" };
+    if (isPasswordInvalid(password)) {
+      throw { status: 400, error: "Invalid password" };
+    }
+
+    const emailTaken = await User.findOne({ email });
+
+    if (emailTaken) {
+      throw { status: 409, error: "Email taken" };
     }
 
     const salt = await bcrypt.genSaltSync(10);
@@ -25,8 +35,9 @@ export const createUser = async ({
     const hashedPassword = await bcrypt.hashSync(password, salt);
 
     const user = await User.create({
-      username,
+      email,
       password: hashedPassword,
+      isVerified: false,
       games: [],
     });
 

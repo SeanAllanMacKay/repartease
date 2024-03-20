@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import { verifyToken } from "@services/auth";
+
 import { createGame, getActiveGames } from "@actions/games";
 
 import gameTypesRouter from "./types";
@@ -9,11 +11,21 @@ const router = Router({ mergeParams: true });
 
 router
   .route("/")
-  .get(async (req, res) => {
+  .get(verifyToken, async (req, res) => {
     try {
       const { user } = req;
+      const { page = 1, pageSize = 20 } = req.query;
+
+      if (isNaN(Number(page)) || isNaN(Number(pageSize))) {
+        throw {
+          error: "Incorrect page or pageSize formatting",
+          status: 400,
+        };
+      }
 
       const { games, status, message } = await getActiveGames({
+        page: Number(page),
+        pageSize: Number(pageSize),
         playerId: user._id,
       });
 
@@ -24,10 +36,12 @@ router
         status = 500,
       } = caught;
 
+      console.log(caught);
+
       res.status(status).send({ error });
     }
   })
-  .post(async (req, res) => {
+  .post(verifyToken, async (req, res) => {
     try {
       const { playerName } = req.body;
 
@@ -40,6 +54,7 @@ router
 
       res.status(status).send({ message, game });
     } catch (caught) {
+      console.log(caught);
       const { error = "There was an error creating this game", status = 500 } =
         caught;
 

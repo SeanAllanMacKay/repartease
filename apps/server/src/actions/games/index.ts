@@ -8,3 +8,4 @@ export * from "./closeResponses";
 export * from "./selectWinner";
 export * from "./submitResponse";
 export * from "./getActiveGames";
+export * from "./setPlayerAway";

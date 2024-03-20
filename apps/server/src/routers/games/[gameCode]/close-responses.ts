@@ -12,14 +12,16 @@ router
     try {
       const { gameCode } = req.params;
 
-      const { io, user } = req;
+      const { pusher, user } = req;
 
-      const { status, message } = await closeResponses({
+      const { status, message, game } = await closeResponses({
         gameCode,
         playerId: user._id,
       });
 
-      io.to(gameCode).emit("update-game");
+      pusher.trigger(gameCode, "close-responses", {
+        round: game.rounds[game.rounds.length - 1],
+      });
 
       res.status(status).send({ message });
     } catch (caught) {

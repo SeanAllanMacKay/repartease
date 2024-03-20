@@ -8,10 +8,9 @@ export interface GameEntityType {
     playerName: string;
     playerId: string;
     points: number;
-    status: "active" | "inactive";
+    status: "active" | "inactive" | "away";
   }[];
   status: "active" | "waiting" | "complete";
-  activePlayer: string;
   rounds: {
     prompt: string;
     activePlayer?: string;

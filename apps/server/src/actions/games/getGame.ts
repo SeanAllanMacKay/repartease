@@ -1,22 +1,6 @@
 import { Game } from "@database/schemas/Game";
 
-const characters = "abcdefghijklmnopqrstuvwxyz";
-
-const obfuscate = (string) => {
-  let obfuscatedString = "";
-
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] === " ") {
-      obfuscatedString += " ";
-    } else {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-
-      obfuscatedString += characters[randomIndex];
-    }
-  }
-
-  return obfuscatedString;
-};
+import { obfuscate } from "src/utilities";
 
 export const getGame = async ({
   playerId,
@@ -34,16 +18,7 @@ export const getGame = async ({
     throw { error: "There was an error fetching this game.", status: 404 };
   }
 
-  const {
-    _id,
-    owner,
-    players,
-    status,
-    activePlayer,
-    rounds,
-    createdAt,
-    updatedAt,
-  } = game;
+  const { _id, owner, players, status, rounds, createdAt, updatedAt } = game;
 
   const currentRound = rounds.pop();
 
@@ -52,7 +27,7 @@ export const getGame = async ({
       ({ response, ...rest }) => ({
         ...rest,
         response: obfuscate(response),
-      }),
+      })
     );
 
     currentRound.responses = obfuscatedAnswers;
@@ -63,7 +38,6 @@ export const getGame = async ({
       _id,
       owner,
       status,
-      activePlayer,
       rounds: [...rounds, currentRound],
       createdAt,
       updatedAt,

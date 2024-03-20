@@ -13,7 +13,7 @@ router
       const { gameCode } = req.params;
       const { playerName } = req.body;
 
-      const { user, io } = req;
+      const { user, pusher } = req;
 
       const { status, message, game } = await addPlayer({
         gameCode,
@@ -21,7 +21,10 @@ router
         playerName,
       });
 
-      io.to(gameCode).emit("update-game");
+      pusher.trigger(gameCode, "add-player", {
+        playerId: user._id,
+        playerName,
+      });
 
       res.status(status).send({ message, game });
     } catch (caught) {
@@ -37,14 +40,16 @@ router
     try {
       const { gameCode } = req.params;
 
-      const { user, io } = req;
+      const { user, pusher } = req;
 
       const { status, message } = await leaveGame({
         gameCode,
         playerId: user._id,
       });
 
-      io.to(gameCode).emit("update-game");
+      pusher.trigger(gameCode, "remove-player", {
+        playerId: user._id,
+      });
 
       res.status(status).send({ message });
     } catch (caught) {

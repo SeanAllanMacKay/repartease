@@ -6,7 +6,7 @@ export const closeResponses = async ({
 }: {
   playerId: string;
   gameCode: string;
-}): Promise<{ status: 200; message: string }> => {
+}): Promise<{ status: 200; message: string; game: any }> => {
   const game = await Game.findOne({
     gameCode,
     players: { $elemMatch: { playerId, status: { $ne: "inactive" } } },
@@ -16,7 +16,10 @@ export const closeResponses = async ({
     throw { error: "There was an error finding this game.", status: 404 };
   }
 
-  if (game.activePlayer.toString() !== playerId.toString()) {
+  if (
+    game.rounds[game.rounds.length - 1].activePlayer?.toString() !==
+    playerId.toString()
+  ) {
     throw { error: "It is not your turn.", status: 403 };
   }
 
@@ -24,5 +27,5 @@ export const closeResponses = async ({
 
   await game.save();
 
-  return { status: 200, message: "Responses Closed." };
+  return { status: 200, message: "Responses Closed.", game };
 };

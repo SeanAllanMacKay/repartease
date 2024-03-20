@@ -12,17 +12,20 @@ router
     try {
       const { gameCode } = req.params;
 
-      const { io, user } = req;
+      const { pusher, user } = req;
 
       const { playerId } = req.body;
 
-      const { status, message } = await selectWinner({
+      const { status, message, game } = await selectWinner({
         gameCode,
         playerId: user._id,
         winnerId: playerId,
       });
 
-      io.to(gameCode).emit("update-game");
+      pusher.trigger(gameCode, "select-winner", {
+        winnerId: playerId,
+        newRound: game.rounds[game.rounds.length - 1],
+      });
 
       res.status(status).send({ message });
     } catch (caught) {

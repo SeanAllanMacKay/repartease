@@ -31,7 +31,7 @@ export const createGame = async ({
   const user = await User.findOne({ _id: playerId });
 
   if (!user) {
-    throw { status: 500 };
+    throw { error: "There was an error creating the game.", status: 500 };
   }
 
   const players = [
@@ -47,12 +47,12 @@ export const createGame = async ({
     gameCode,
     players,
     status: "active",
-    activePlayer: playerId,
     rounds: [
       {
         prompt: await getPrompt(),
         responses: [],
         status: "submission",
+        activePlayer: playerId,
       },
     ],
     createdAt: now,

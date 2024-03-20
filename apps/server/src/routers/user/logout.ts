@@ -4,9 +4,13 @@ const router = Router({ mergeParams: true });
 
 router.route("/").post(async (_req, res) => {
   try {
-    res.clearCookie("auth");
+    await res.clearCookie("auth", {
+      secure: true,
+      sameSite: "none",
+      httpOnly: true,
+    });
 
-    res.status(200).send({ message: "Logged out" });
+    await res.status(200).send({ message: "Logged out" });
   } catch (caught) {
     const { status = 500, error = "Something went wrong" } = caught;
 

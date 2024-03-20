@@ -19,29 +19,32 @@ export const leaveGame = async ({
   }
 
   const player = game.players.find(
-    (player) => player.playerId === playerId.toString(),
+    (player) => player.playerId === playerId.toString()
   );
-
-  const playerIndex = game.players.indexOf(player);
 
   player.status = "inactive";
-
-  const nextPlayer = game.players.reduce(
-    (newIndex, { status }, index) => {
-      if (index > playerIndex && status !== "inactive") {
-        return index;
-      }
-
-      return newIndex;
-    },
-    game.players.findIndex((player) => player.status === "active"),
-  );
 
   if (game.players.filter(({ status }) => status === "active").length < 2) {
     game.status = "waiting";
   }
 
-  game.activePlayer = game?.players?.[nextPlayer]?.playerId;
+  if (game.rounds[game.rounds.length - 1].activePlayer === playerId) {
+    const playerIndex = game.players.indexOf(player);
+
+    const nextPlayer = game.players.reduce(
+      (newIndex, { status }, index) => {
+        if (index > playerIndex && status !== "inactive") {
+          return index;
+        }
+
+        return newIndex;
+      },
+      game.players.findIndex((player) => player.status === "active")
+    );
+
+    game.rounds[game.rounds.length - 1].activePlayer =
+      game?.players?.[nextPlayer]?.playerId;
+  }
 
   await game.save();
 

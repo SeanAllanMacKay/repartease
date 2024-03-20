@@ -2,30 +2,33 @@ import { GET, POST, PUT } from "../requests";
 
 export const User = {
   login: async ({
-    username,
+    email,
     password,
-  }: {
-    username: string;
-    password: string;
-  }) =>
-    await POST<{
-      user: { _id: string; username: string; games: string[] };
-      token: string;
-    }>({
-      endpoint: "/user/login",
-      body: { username, password },
-    }),
+  }: { email?: string; password?: string } = {}) => {
+    try {
+      return await POST<{
+        user: { _id: string; email: string; games: string[] };
+        token: string;
+      }>({
+        endpoint: "/user/login",
+        body: { email, password },
+      });
+    } catch (caught) {
+      console.error(caught);
+      throw caught;
+    }
+  },
 
   logout: async () => await POST({ endpoint: "/user/logout" }),
 
   get: async () => await GET({ endpoint: "/user" }),
 
-  update: async ({ userId, username }: { userId: string; username: string }) =>
+  update: async ({ userId, email }: { userId: string; email: string }) =>
     await PUT<{
-      user: { _id: string; username: string; games: string[] };
+      user: { _id: string; email: string; games: string[] };
     }>({
       endpoint: `/user/${userId}`,
-      body: { username },
+      body: { email },
     }),
 
   validateUsername: async ({

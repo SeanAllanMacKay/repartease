@@ -20,7 +20,7 @@ export const addPlayer = async ({
   }
 
   const alreadyAdded = game.players.find(
-    ({ playerId: currentId }) => currentId === playerId.toString(),
+    ({ playerId: currentId }) => currentId === playerId.toString()
   );
 
   if (alreadyAdded) {
@@ -29,10 +29,6 @@ export const addPlayer = async ({
     }
 
     alreadyAdded.status = "active";
-
-    if (!game.activePlayer) {
-      game.activePlayer = playerId;
-    }
   } else {
     game.players.push({
       playerId,
@@ -43,8 +39,8 @@ export const addPlayer = async ({
     });
   }
 
-  if (!game.activePlayer) {
-    game.activePlayer = playerId;
+  if (!game.rounds[game.rounds.length - 1].activePlayer) {
+    game.rounds[game.rounds.length - 1].activePlayer = playerId;
   }
 
   await game.save();
