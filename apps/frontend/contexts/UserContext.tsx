@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 
-import { User } from "api-abstraction";
+import { User } from "api";
 
 import type { PropsWithChildren } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

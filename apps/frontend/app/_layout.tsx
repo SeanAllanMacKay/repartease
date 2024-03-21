@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Stack, Slot } from "expo-router";
-import { initialize } from "api-abstraction";
+import { initialize } from "api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { UserContext, UserProvider } from "contexts/UserContext";
 import { Header } from "components/Header";

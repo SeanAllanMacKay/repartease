@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { UserContext } from "contexts/UserContext";
-import { Game } from "api-abstraction";
+import { Game } from "api";
 import { Form } from "components/Form";
 import { FormField } from "components/FormField";
 import { isRequiredInvalid } from "@repartease/validators";

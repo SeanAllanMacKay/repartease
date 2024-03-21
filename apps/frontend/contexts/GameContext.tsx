@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useContext } from "react";
 import { PusherContext } from "./PusherContext";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Game } from "api-abstraction";
+import { Game } from "api";
 import { Platform } from "react-native";
 import { UserContext } from "./UserContext";
 import { router } from "expo-router";

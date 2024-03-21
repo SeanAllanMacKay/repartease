@@ -8,7 +8,8 @@
     "start": "dotenv -e .env.production turbo run start --concurrency=11",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "build:frontend": "turbo build --filter=\"...{./apps/frontend}\""
+    "build:frontend": "turbo build --filter=\"...{./apps/frontend}\"",
+    "build:server": "turbo build --filter=\"...{./apps/server}\""
   },
   "devDependencies": {
     "@repartease/eslint-config": "workspace:*",

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { View } from "react-native";
 import { Text } from "components/Text";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Game } from "api-abstraction";
+import { Game } from "api";
 import { Form, useForm } from "components/Form";
 import { FlatList } from "components/FlatList";
 import { SubmissionCard } from "batteries-included/Cards/SubmissionCard";

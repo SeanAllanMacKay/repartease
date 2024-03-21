@@ -6,7 +6,7 @@ import { TextInput } from "components/TextInput";
 
 import { isRequiredInvalid } from "@repartease/validators";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Game } from "api-abstraction";
+import { Game } from "api";
 import { router } from "expo-router";
 
 type JoinGameFormValues = { gameCode: string; playerName: string };
