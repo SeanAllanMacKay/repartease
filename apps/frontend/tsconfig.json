@@ -4,7 +4,7 @@
     "jsx": "react",
     "strict": true,
     "paths": {
-      "api": ["./api*"],
+      "api": ["./api"],
       "contexts*": ["./contexts*"],
       "components*": ["./components*"],
       "style*": ["./style*"],
