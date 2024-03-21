@@ -11,8 +11,10 @@ import { Text } from "components/Text";
 
 const queryClient = new QueryClient();
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 initialize({
-  config: { host: "https://barnacle-prompt-preferably.ngrok-free.app" },
+  config: { host: API_URL },
 });
 
 const Content = () => {

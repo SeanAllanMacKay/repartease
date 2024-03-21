@@ -8,12 +8,15 @@ import { Platform } from "react-native";
 import PusherJS from "pusher-js";
 import { Pusher as PusherNative } from "@pusher/pusher-websocket-react-native";
 
+const PUSHER_KEY = process.env.EXPO_PUBLIC_PUSHER_KEY;
+const PUSHER_CLUSTER = process.env.EXPO_PUBLIC_PUSHER_CLUSTER;
+
 const Pusher = Platform.OS === "web" ? PusherJS : PusherNative;
 
 const pusher =
   Platform.OS === "web"
-    ? new Pusher("457f510eb94f9d09eeff", {
-        cluster: "us2",
+    ? new Pusher(PUSHER_KEY, {
+        cluster: PUSHER_CLUSTER,
         channelAuthorization: { endpoint: "/api/pusher/auth" },
       })
     : Pusher.getInstance();

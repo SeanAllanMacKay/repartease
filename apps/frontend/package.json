@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx expo start --clear --dev-client",
+    "dev": "EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --clear --dev-client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "build": "expo export --platform web",

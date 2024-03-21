@@ -1,12 +1,12 @@
-import React, { createContext, useEffect, useContext, useState } from "react";
+import React, { createContext, useEffect, useContext } from "react";
 import { PusherContext } from "./PusherContext";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Game } from "api-abstraction";
 import { Platform } from "react-native";
-
-import type { PropsWithChildren } from "react";
 import { UserContext } from "./UserContext";
 import { router } from "expo-router";
+
+import type { PropsWithChildren } from "react";
 
 type GameType = {
   _id: string;
@@ -46,6 +46,10 @@ export const GameProvider = ({
 }: PropsWithChildren<{
   gameCode: string;
 }>) => {
+  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+  const PUSHER_KEY = process.env.EXPO_PUBLIC_PUSHER_KEY;
+  const PUSHER_CLUSTER = process.env.EXPO_PUBLIC_PUSHER_CLUSTER;
+
   const queryClient = useQueryClient();
 
   const { user } = useContext(UserContext);
@@ -215,23 +219,20 @@ export const GameProvider = ({
       (async () => {
         try {
           await pusher.init({
-            apiKey: "457f510eb94f9d09eeff",
-            cluster: "us2",
+            apiKey: PUSHER_KEY,
+            cluster: PUSHER_CLUSTER,
             onAuthorizer: async (channelName: string, socketId: string) => {
-              const response = await fetch(
-                "https://barnacle-prompt-preferably.ngrok-free.app/api/pusher/auth",
-                {
-                  method: "POST",
-                  credentials: "include",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    socket_id: socketId,
-                    channel_name: channelName,
-                  }),
-                }
-              );
+              const response = await fetch(`${API_URL}/api/pusher/auth`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  socket_id: socketId,
+                  channel_name: channelName,
+                }),
+              });
 
               const body = await response.json();
 
