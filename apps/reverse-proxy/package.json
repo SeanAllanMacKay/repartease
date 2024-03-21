@@ -2,7 +2,7 @@
   "name": "@repartease/reverse-proxy",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "src/index.ts",
   "nodemonConfig": {
     "ignore": [
       "node_modules"
@@ -10,12 +10,13 @@
     "watch": [
       "src"
     ],
-    "exec": "node -r tsconfig-paths/register -r ts-node/register ./src/server.ts",
+    "exec": "node -r tsconfig-paths/register -r ts-node/register ./src",
     "ext": "ts, js"
   },
   "scripts": {
     "dev": "set \"NODE_ENV=development\" && nodemon",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "start": "node dist"
   },
   "author": "Sean MacKay",
   "license": "ISC",

@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import { Server as HTTPServer } from "http";
 import cors from "cors";
 
-import database from "./database";
+import { database } from "./database";
 import routers from "./routers";
 import { pusher } from "@services/sockets";
 
@@ -23,7 +23,7 @@ process.on("uncaughtException", function (err) {
 // Required to allow requests from frontend
 app.use(
   cors({
-    origin: [NGROK_DOMAIN],
+    origin: [NGROK_DOMAIN, "https://repartease.com"],
     credentials: true,
   })
 );

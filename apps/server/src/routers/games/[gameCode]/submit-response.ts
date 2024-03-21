@@ -3,7 +3,7 @@ import { Router, Request } from "express";
 import { verifyToken } from "@services/auth";
 
 import { submitResponse } from "@actions/games";
-import { obfuscate } from "src/utilities";
+import { obfuscate } from "@utilities/obfuscate";
 
 const router = Router({ mergeParams: true });
 

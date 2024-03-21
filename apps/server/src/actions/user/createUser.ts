@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 
 import bcrypt from "bcryptjs";
 
-import { User } from "@database/";
+import { User } from "@database/schemas";
 
 import { isEmailInvalid, isPasswordInvalid } from "@repartease/validators";
 

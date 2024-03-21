@@ -2,8 +2,9 @@
   "name": "repartease_monorepo",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "build": "dotenv -e .env.production turbo build",
     "dev": "dotenv -e .env.development turbo run dev --concurrency=11",
+    "start": "dotenv -e .env.production turbo run start --concurrency=11",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "build:mobile": "turbo build --filter=\"...{./apps/mobile}\""

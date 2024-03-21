@@ -9,8 +9,6 @@ dotenv.config({
 
 const DB_URL: string = process.env.DB_URL || "";
 
-const connection = mongoose.createConnection(DB_URL, {});
-
-export default connection;
+export const database = mongoose.createConnection(DB_URL, {});
 
 export * from "./schemas";

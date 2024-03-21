@@ -1,6 +1,6 @@
 import { Game } from "@database/schemas/Game";
 
-import { obfuscate } from "src/utilities";
+import { obfuscate } from "@utilities/obfuscate";
 
 export const getGame = async ({
   playerId,

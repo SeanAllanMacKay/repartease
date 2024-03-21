@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-import { User } from "@database/";
+import { User } from "@database/schemas";
 
 import { createUser } from "./createUser";
 

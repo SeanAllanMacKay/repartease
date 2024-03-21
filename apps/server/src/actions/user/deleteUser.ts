@@ -1,4 +1,4 @@
-import { User } from "@database/";
+import { User } from "@database/schemas";
 
 type DeleteUserProps = {
   userId: string;

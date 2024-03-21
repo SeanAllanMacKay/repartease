@@ -12,10 +12,11 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "paths": {
-      "@routers*": ["./src/routers*"],
-      "@actions*": ["./src/actions*"],
-      "@services*": ["./src/services*"],
-      "@database*": ["./src/database*"]
+      "@routers/*": ["./src/routers/*"],
+      "@actions/*": ["./src/actions/*"],
+      "@services/*": ["./src/services/*"],
+      "@database/*": ["./src/database/*"],
+      "@utilities/*": ["./src/utilities/*"]
     }
   }
 }

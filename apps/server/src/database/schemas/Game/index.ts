@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import database from "../../";
+import { database } from "../../";
 
 import type { GameDocument, GameModel } from "./types";
 

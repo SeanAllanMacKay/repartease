@@ -7,6 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "build": "expo export --platform web",
+    "start": "npx serve dist --single",
     "eas-build-post-install": "pnpm run -w build:mobile"
   },
   "dependencies": {
