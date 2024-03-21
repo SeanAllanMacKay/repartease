@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Redirect } from "expo-router";
-import { Layout } from "components/Layout";
-import { Button } from "components/Button";
-import { Form, useForm } from "components/Form";
-import { FormField } from "components/FormField";
-import { TextInput } from "components/TextInput";
-import { Text } from "components/Text";
+import { Layout } from "Components/Layout";
+import { Button } from "Components/Button";
+import { Form, useForm } from "Components/Form";
+import { FormField } from "Components/FormField";
+import { TextInput } from "Components/TextInput";
+import { Text } from "Components/Text";
 
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "Contexts/UserContext";
 
 import {
   isRequiredInvalid,

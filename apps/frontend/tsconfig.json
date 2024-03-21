@@ -4,11 +4,11 @@
     "jsx": "react",
     "strict": true,
     "paths": {
-      "api": ["./api"],
-      "contexts*": ["./contexts*"],
-      "components*": ["./components*"],
-      "style*": ["./style*"],
-      "batteries-included*": ["./batteries-included*"]
+      "Api": ["./Api"],
+      "Contexts*": ["./Contexts*"],
+      "Components*": ["./Components*"],
+      "Style*": ["./Style*"],
+      "BIC*": ["./BIC*"]
     }
   }
 }

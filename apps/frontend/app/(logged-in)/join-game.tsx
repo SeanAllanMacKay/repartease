@@ -1,7 +1,7 @@
 import React from "react";
-import { Tabs, Tab } from "components/Tabs";
-import { RejoinGameTab } from "batteries-included/tabs/RejoinGameTab";
-import { JoinNewGameTab } from "batteries-included/tabs/JoinNewGameTab";
+import { Tabs, Tab } from "Components/Tabs";
+import { RejoinGameTab } from "BIC/tabs/RejoinGameTab";
+import { JoinNewGameTab } from "BIC/tabs/JoinNewGameTab";
 import { View } from "react-native";
 
 export default function JoinGame() {

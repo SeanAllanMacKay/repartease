@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Redirect, Slot } from "expo-router";
-import { UserContext } from "contexts/UserContext";
-import { Text } from "components/Text";
-import { Layout } from "components/Layout";
+import { UserContext } from "Contexts/UserContext";
+import { Text } from "Components/Text";
+import { Layout } from "Components/Layout";
 
 export default () => {
   const { user, isLoading } = useContext(UserContext);

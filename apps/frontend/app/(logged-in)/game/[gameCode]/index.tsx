@@ -1,20 +1,20 @@
-import { ActivePlayer } from "batteries-included/Game/ActivePlayer";
-import { InactivePlayer } from "batteries-included/Game/InactivePlayer";
-import { GameContext } from "contexts/GameContext";
-import { UserContext } from "contexts/UserContext";
+import { ActivePlayer } from "BIC/Game/ActivePlayer";
+import { InactivePlayer } from "BIC/Game/InactivePlayer";
+import { GameContext } from "Contexts/GameContext";
+import { UserContext } from "Contexts/UserContext";
 import React, { useContext, useState } from "react";
-import { Text } from "components/Text";
+import { Text } from "Components/Text";
 import { View, StyleSheet, Pressable } from "react-native";
-import { Waiting } from "batteries-included/Game/Waiting";
-import { Timer } from "components/Timer";
-import { Menu } from "components/Menu";
+import { Waiting } from "BIC/Game/Waiting";
+import { Timer } from "Components/Timer";
+import { Menu } from "Components/Menu";
 import {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
-import { Button } from "components/Button";
+import { Button } from "Components/Button";
 
 const statusMapping = {
   active: "🟢",

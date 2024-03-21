@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "components/Button";
+import { Button } from "Components/Button";
 import { View } from "react-native";
 
 export default function LoggedIn() {

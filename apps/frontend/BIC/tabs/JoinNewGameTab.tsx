@@ -1,12 +1,12 @@
 import React from "react";
-import { Button } from "components/Button";
-import { Form, useForm } from "components/Form";
-import { FormField } from "components/FormField";
-import { TextInput } from "components/TextInput";
+import { Button } from "Components/Button";
+import { Form, useForm } from "Components/Form";
+import { FormField } from "Components/FormField";
+import { TextInput } from "Components/TextInput";
 
 import { isRequiredInvalid } from "@repartease/validators";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Game } from "api";
+import { Game } from "Api";
 import { router } from "expo-router";
 
 type JoinGameFormValues = { gameCode: string; playerName: string };

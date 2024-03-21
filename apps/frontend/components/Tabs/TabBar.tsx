@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "components/Button";
+import { Button } from "Components/Button";
 import type {
   NavigationState,
   SceneRendererProps,

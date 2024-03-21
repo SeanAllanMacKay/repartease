@@ -1,16 +1,16 @@
-import { GameContext } from "contexts/GameContext";
+import { GameContext } from "Contexts/GameContext";
 import React, { useState, useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { UserContext } from "contexts/UserContext";
-import { Game } from "api";
-import { Form } from "components/Form";
-import { FormField } from "components/FormField";
+import { UserContext } from "Contexts/UserContext";
+import { Game } from "Api";
+import { Form } from "Components/Form";
+import { FormField } from "Components/FormField";
 import { isRequiredInvalid } from "@repartease/validators";
-import { TextInput } from "components/TextInput";
-import { Button } from "components/Button";
-import { Text } from "components/Text";
+import { TextInput } from "Components/TextInput";
+import { Button } from "Components/Button";
+import { Text } from "Components/Text";
 
 type ResponseFormValues = {
   response: string;

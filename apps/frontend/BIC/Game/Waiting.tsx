@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text } from "components/Text";
-import { GameContext } from "contexts/GameContext";
+import { Text } from "Components/Text";
+import { GameContext } from "Contexts/GameContext";
 import { useContext } from "react";
 
 export const Waiting = () => {

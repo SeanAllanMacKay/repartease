@@ -1,7 +1,7 @@
 import React from "react";
 import { Slot, useLocalSearchParams } from "expo-router";
-import { PusherProvider } from "contexts/PusherContext";
-import { GameProvider } from "contexts/GameContext";
+import { PusherProvider } from "Contexts/PusherContext";
+import { GameProvider } from "Contexts/GameContext";
 
 export default () => {
   const { gameCode } = useLocalSearchParams();

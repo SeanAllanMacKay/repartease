@@ -1,8 +1,8 @@
 import React from "react";
-import { FlatList } from "components/FlatList";
+import { FlatList } from "Components/FlatList";
 import { GameCard } from "../Cards/GameCards";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Game } from "api";
+import { Game } from "Api";
 
 export const RejoinGameTab = () => {
   const query = useInfiniteQuery({

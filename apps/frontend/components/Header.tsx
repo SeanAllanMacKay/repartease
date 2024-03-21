@@ -1,4 +1,4 @@
-import { UserContext } from "contexts/UserContext";
+import { UserContext } from "Contexts/UserContext";
 import { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "./Text";

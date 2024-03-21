@@ -1,15 +1,15 @@
-import { GameContext } from "contexts/GameContext";
+import { GameContext } from "Contexts/GameContext";
 import React from "react";
 import { useContext } from "react";
 import { View } from "react-native";
-import { Text } from "components/Text";
+import { Text } from "Components/Text";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Game } from "api";
-import { Form, useForm } from "components/Form";
-import { FlatList } from "components/FlatList";
-import { SubmissionCard } from "batteries-included/Cards/SubmissionCard";
-import { Button } from "components/Button";
-import { FormField } from "components/FormField";
+import { Game } from "Api";
+import { Form, useForm } from "Components/Form";
+import { FlatList } from "Components/FlatList";
+import { SubmissionCard } from "BIC/Cards/SubmissionCard";
+import { Button } from "Components/Button";
+import { FormField } from "Components/FormField";
 
 type SelectResponseFormValues = {
   playerId: string;

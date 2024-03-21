@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Stack, Slot } from "expo-router";
-import { initialize } from "api";
+import { initialize } from "Api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { UserContext, UserProvider } from "contexts/UserContext";
-import { Header } from "components/Header";
-import { Button } from "components/Button";
+import { UserContext, UserProvider } from "Contexts/UserContext";
+import { Header } from "Components/Header";
+import { Button } from "Components/Button";
 import { View } from "react-native";
-import { Menu } from "components/Menu";
-import { Text } from "components/Text";
+import { Menu } from "Components/Menu";
+import { Text } from "Components/Text";
 
 const queryClient = new QueryClient();
 
