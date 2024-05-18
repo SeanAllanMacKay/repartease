@@ -9,9 +9,9 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Build Apps
         run: |
-          ls
           npm install
           npm run build
       - name: Configure SSH
