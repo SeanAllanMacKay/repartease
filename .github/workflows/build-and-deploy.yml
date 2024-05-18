@@ -1,0 +1,25 @@
+name: Deploy to DigitalOcean Droplet
+'on':
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Apps
+        run: |
+          npm install
+          npm run build
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 22 ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+      - name: Deploy to DigitalOcean Droplet
+        run: |
+          scp -r ${{secrets.USERNAME}}@${{secrets.HOST}}:/repartease/frontend ./apps/frontend/dist
+          scp -r ${{secrets.USERNAME}}@${{secrets.HOST}}:/repartease/reverse-proxy ./apps/reverse-proxy/dist
+          scp -r ${{secrets.USERNAME}}@${{secrets.HOST}}:/repartease/server ./apps/server/dist
