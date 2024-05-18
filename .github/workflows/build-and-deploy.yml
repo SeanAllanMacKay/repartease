@@ -6,10 +6,12 @@ name: Deploy to DigitalOcean Droplet
 
 jobs:
   build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Build Apps
         run: |
+          ls
           npm install
           npm run build
       - name: Configure SSH
