@@ -28,8 +28,8 @@
     "http-proxy-middleware": "^2.0.6"
   },
   "devDependencies": {
-    "@repartease/eslint-config": "workspace:*",
-    "@repartease/typescript-config": "workspace:*",
+    "@repartease/eslint-config": "*",
+    "@repartease/typescript-config": "*",
     "@types/express": "^4.17.17",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",

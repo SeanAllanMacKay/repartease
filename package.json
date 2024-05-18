@@ -1,6 +1,10 @@
 {
   "name": "repartease_monorepo",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "dotenv -e .env.production turbo build",
     "cd": "turbo build",
@@ -12,22 +16,12 @@
     "build:server": "turbo build --filter=\"...{./apps/server}\""
   },
   "devDependencies": {
-    "@repartease/eslint-config": "workspace:*",
-    "@repartease/typescript-config": "workspace:*",
+    "@repartease/eslint-config": "*",
+    "@repartease/typescript-config": "*",
     "prettier": "^3.1.0"
   },
-  "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@babel/*",
-        "expo-modules-*",
-        "typescript"
-      ]
-    }
   },
   "dependencies": {
     "dotenv-cli": "^7.3.0",
