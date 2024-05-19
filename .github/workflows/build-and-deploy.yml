@@ -15,7 +15,7 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: Deploy reverse-proxy DigitalOcean Droplet
+      - name: Deploy reverse-proxy to DigitalOcean Droplet
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ./apps/reverse-proxy/dist
@@ -23,4 +23,19 @@ jobs:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
-      
+      - name: Deploy server to DigitalOcean Droplet
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./apps/server/dist
+          remote: /repartease/server
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          password: ${{ secrets.DO_DROPLET_PASSWORD }}
+      - name: Deploy frontend to DigitalOcean Droplet
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ./apps/server/dist
+          remote: /repartease/server
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          password: ${{ secrets.DO_DROPLET_PASSWORD }}
