@@ -5,21 +5,15 @@ module.exports = function (api) {
     plugins: [
       "react-native-reanimated/plugin",
       [
-        "module-resolver",
+        require.resolve("babel-plugin-module-resolver"),
         {
-          extensions: [
-            ".js",
-            ".jsx",
-            ".json",
-            ".ts",
-            ".tsx",
-          ],
-          root: ["."],
+          extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+          root: ["./"],
           alias: {
-            Contexts: "./Contexts",
-            Components: "./Components",
-            BIC: "./BIC",
-            Api: "./Api",
+            "Contexts/": "./Contexts/",
+            "Components/": "./Components/",
+            "BIC/": "./BIC/",
+            "Api/": "./Api/",
           },
         },
       ],
