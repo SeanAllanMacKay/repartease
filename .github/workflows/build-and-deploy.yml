@@ -19,7 +19,6 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
       - name: Deploy to DigitalOcean Droplet
         run: |
           scp -r ${{secrets.USERNAME}}@${{secrets.HOST}}:/repartease/frontend ./apps/frontend/dist
