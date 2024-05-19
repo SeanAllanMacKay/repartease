@@ -35,7 +35,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ./apps/server/dist
-          remote: /repartease/server
+          remote: /repartease/frontend
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
