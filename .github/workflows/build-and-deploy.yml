@@ -18,10 +18,13 @@ jobs:
       - name: Configure SSH
         env:
           KEY: ${{ secrets.KEY }}
+          HOST: ${{ secrets.HOST }}
         run: |
-          mkdir -p ~/.ssh
-          echo "${KEY}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          mkdir -p /home/runner/.ssh
+          echo "${KEY}" > /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          ssh-keyscan $HOST >> /home/runner/.ssh/known_hosts
+          ssh-add /home/runner/.ssh/github_actions
       - name: Deploy to DigitalOcean Droplet
         env:
           USERNAME: ${{ secrets.USERNAME }}
