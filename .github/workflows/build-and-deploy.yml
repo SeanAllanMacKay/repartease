@@ -1,5 +1,5 @@
 name: Deploy to DigitalOcean Droplet
-'on':
+"on":
   push:
     branches:
       - master
@@ -39,3 +39,24 @@ jobs:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
+      - name: Start reverse-proxy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          password: ${{ secrets.DO_DROPLET_PASSWORD }}
+          script: cd /repartease && node reverse-proxy
+      - name: Start server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          password: ${{ secrets.DO_DROPLET_PASSWORD }}
+          script: cd /repartease && node server
+      - name: Start frontend
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          password: ${{ secrets.DO_DROPLET_PASSWORD }}
+          script: cd /repartease && npx serve frontend --single
