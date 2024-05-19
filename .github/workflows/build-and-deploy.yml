@@ -12,6 +12,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build Apps
         run: |
+          USERNAME="${{ secrets.USERNAME }}"
+          HOST="${{ secrets.HOST }}"
+          echo "USERNAME length: ${#USERNAME}"
+          echo "HOST length: ${#HOST}"
           npm install
           npm run build
       - name: Configure SSH
