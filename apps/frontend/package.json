@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx expo start --clear --dev-client",
+    "dev": "npx expo start --clear --dev-client -c",
     "build": "expo export --platform web",
     "build-web:staging": "expo export --platform web",
     "build-mobile:development": "eas build --platform all",

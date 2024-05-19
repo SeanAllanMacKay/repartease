@@ -23,7 +23,7 @@ process.on("uncaughtException", function (err) {
 // Required to allow requests from frontend
 app.use(
   cors({
-    origin: [NGROK_DOMAIN, "https://repartease.com"],
+    origin: [NGROK_DOMAIN, "https://www.repartease.com"],
     credentials: true,
   })
 );

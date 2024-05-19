@@ -44,6 +44,7 @@ export default function JoinGame() {
   const isPlayable =
     game?.players?.filter(({ status }) => status === "active")?.length > 1;
 
+  console.log(game);
   if (!isPlayable) {
     return <Waiting />;
   }

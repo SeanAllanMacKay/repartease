@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "dotenv -e .env.production turbo build",
+    "build": "dotenv -e .env.production turbo build --no-cache",
     "cd": "turbo build",
     "dev": "dotenv -e .env.development turbo run dev --concurrency=11",
     "start": "dotenv -e .env.production turbo run start --concurrency=11",
