@@ -8,6 +8,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: repartease
     steps:
       - uses: actions/checkout@v3
       - name: Build Apps
