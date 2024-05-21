@@ -40,11 +40,11 @@
     "openai": "^4.28.0",
     "pusher": "^5.2.0",
     "pusher-js": "8.4.0-rc2",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "twilio": "^4.11.1",
-    "uuid": "^9.0.0",
-    "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
