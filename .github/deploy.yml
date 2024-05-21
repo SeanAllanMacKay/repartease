@@ -1,0 +1,21 @@
+name: Deploy to DigitalOcean Droplet
+"on":
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: repartease
+    steps:
+      - name: Deploy to DigitalOcean Droplet
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          key: ${{ secrets.DO_DROPLET_KEY }}
+          script: |
+            cd /
+            git clone git@github.com:SeanAllanMacKay/repartease.git
