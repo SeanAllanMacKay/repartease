@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "set \"NODE_ENV=development\" && nodemon",
     "build": "tsc && tsc-alias",
-    "start": "node dist"
+    "start": "set \"NODE_ENV=production\" && node dist"
   },
   "author": "Sean MacKay",
   "license": "ISC",
