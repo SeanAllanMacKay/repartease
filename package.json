@@ -8,11 +8,12 @@
   "scripts": {
     "build": "turbo build",
     "dev": "dotenv -e .env.development turbo run dev --concurrency=11",
-    "start": "turbo run start --concurrency=11",
+    "start": "dotenv -e .env.production turbo run start --concurrency=11",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "build:frontend": "turbo build --filter=\"...{./apps/frontend}\"",
-    "build:server": "turbo build --filter=\"...{./apps/server}\""
+    "build:server": "turbo build --filter=\"...{./apps/server}\"",
+    "heroku-postbuild": "./heroku.build"
   },
   "devDependencies": {
     "prettier": "^3.1.0"
