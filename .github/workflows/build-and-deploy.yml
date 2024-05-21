@@ -34,7 +34,7 @@ jobs:
       - name: Deploy frontend to DigitalOcean Droplet
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: ./apps/server/dist
+          local: ./apps/frontend/dist
           remote: /repartease/frontend
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
@@ -45,18 +45,44 @@ jobs:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
-          script: cd /repartease && node reverse-proxy
+          script: |
+            cd / 
+            cd /repartease
+            REVERSE_PROXY_PORT=${{ vars.REVERSE_PROXY_PORT }}
+            API_PORT=${{ vars.API_PORT }}
+            WEB_PORT=${{ vars.WEB_PORT }}
+            ENVIRONMENT=${{ vars.ENVIRONMENT }}
+            node reverse-proxy
       - name: Start server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
-          script: cd /repartease && node server
+          script: |
+            cd / 
+            cd /repartease
+            DB_URL=${{ secrets.DB_URL }}
+            JWT_PASSPHRASE=${{ secrets.JWT_PASSPHRASE }}
+            OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+            SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+            SENDGRID_EMAIL_ADDRESS=${{ secrets.SENDGRID_EMAIL_ADDRESS }}
+            PUSHER_APP_ID=${{ secrets.PUSHER_APP_ID }}
+            PUSHER_SECRET=${{ secrets.PUSHER_SECRET }}
+            NODE_ENV=${{ vars.NODE_ENV }}
+            PUSHER_KEY=${{ vars.PUSHER_KEY }}
+            PUSHER_CLUSTER=${{ vars.PUSHER_CLUSTER }}
+            node server
       - name: Start frontend
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           password: ${{ secrets.DO_DROPLET_PASSWORD }}
-          script: cd /repartease && npx serve frontend --single
+          script: |
+            cd / 
+            cd /repartease
+            EXPO_PUBLIC_API_URL=${{ vars.EXPO_PUBLIC_API_URL }}
+            EXPO_PUBLIC_PUSHER_KEY=${{ vars.EXPO_PUBLIC_PUSHER_KEY }}
+            EXPO_PUBLIC_PUSHER_CLUSTER=${{ vars.EXPO_PUBLIC_PUSHER_CLUSTER }}
+            npx serve frontend --single
