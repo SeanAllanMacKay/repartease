@@ -52,8 +52,8 @@ database_1.database
     .once("open", () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Database connected");
     // Start server
-    server.listen(process.env.API_PORT, () => {
-        console.log(`Server online: connected to port ${process.env.API_PORT}`);
+    server.listen(process.env.API_PORT || 80, () => {
+        console.log(`Server online: connected to port ${process.env.API_PORT || 80}`);
         app.use("/", routers_1.default);
     });
 }));
