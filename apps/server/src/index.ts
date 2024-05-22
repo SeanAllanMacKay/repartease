@@ -26,7 +26,10 @@ process.on("uncaughtException", function (err) {
 const CORSOrigins =
   NODE_ENV === "development"
     ? [NGROK_DOMAIN, WEB_PORT]
-    : ["https://repartease.com"];
+    : [
+        "https://repartease.com",
+        "https://repartease-frontend-2d421dc5c988.herokuapp.com",
+      ];
 
 // Required to allow requests from frontend
 app.use(
