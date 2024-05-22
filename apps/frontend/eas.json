@@ -4,6 +4,12 @@
   },
   "build": {
     "monorepo": {
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "image": "latest"
+      },
       "cache": {
         "key": "turbo",
         "paths": ["../../node_modules/.cache/turbo"]
