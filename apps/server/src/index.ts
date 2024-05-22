@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Server as HTTPServer } from "http";
 import cors from "cors";
+import ngrok from "@ngrok/ngrok";
 
 import { database } from "./database";
 import routers from "./routers";
@@ -68,3 +69,15 @@ database
       app.use("/", routers);
     });
   });
+
+if (process.env.ENVIRONMENT === "development") {
+  (async () => {
+    const listener = await ngrok.forward({
+      addr: process.env.PORT,
+      authtoken_from_env: true,
+      domain: process.env.NGROK_DOMAIN,
+    });
+
+    console.log(`NGROK ingress established at: ${listener.url()}`);
+  })();
+}
