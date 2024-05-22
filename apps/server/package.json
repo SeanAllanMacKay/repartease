@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "set \"NODE_ENV=development\" && nodemon",
-    "build": "tsc && tsc-alias && shx cp .env.production dist/.env.production",
+    "build": "tsc && tsc-alias",
     "start": "node dist"
   },
   "author": "Sean MacKay",
