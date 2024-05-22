@@ -9,10 +9,6 @@
       },
       "android": {
         "image": "latest"
-      },
-      "cache": {
-        "key": "turbo",
-        "paths": ["../../node_modules/.cache/turbo"]
       }
     },
     "development": {
@@ -22,6 +18,10 @@
       "channel": "development",
       "android": {
         "buildType": "apk"
+      },
+      "cache": {
+        "key": "turbo",
+        "paths": ["../../node_modules/.cache/turbo"]
       }
     },
     "staging": {
