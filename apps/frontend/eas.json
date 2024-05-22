@@ -25,6 +25,7 @@
       }
     },
     "staging": {
+      "extends": "monorepo",
       "distribution": "internal",
       "channel": "staging"
     },
