@@ -1,1 +1,1 @@
-web: turbo run start --filter=@repartease/frontend
+web: cd apps/frontend && npx serve dist --single -l $PORT
