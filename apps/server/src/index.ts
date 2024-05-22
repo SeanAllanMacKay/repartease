@@ -27,7 +27,8 @@ const CORSOrigins =
   NODE_ENV === "development"
     ? [NGROK_DOMAIN, WEB_PORT]
     : [
-        "https://repartease.com",
+        "https://www.repartease.com",
+        "http://www.repartease.com",
         "https://repartease-frontend-2d421dc5c988.herokuapp.com",
       ];
 
