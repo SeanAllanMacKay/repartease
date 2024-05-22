@@ -17,7 +17,7 @@ const pusher =
   Platform.OS === "web"
     ? new Pusher(PUSHER_KEY, {
         cluster: PUSHER_CLUSTER,
-        channelAuthorization: { endpoint: "/api/pusher/auth" },
+        channelAuthorization: { endpoint: "/pusher/auth" },
       })
     : Pusher.getInstance();
 

@@ -9,7 +9,7 @@ export const DELETE = async ({
   endpoint,
 }: DELETEProps): Promise<APIResponse> => {
   try {
-    const response = await fetch(`${config?.host ?? ""}/api${endpoint}`, {
+    const response = await fetch(`${config?.host ?? ""}${endpoint}`, {
       method: "DELETE",
       credentials: "include",
       headers: {

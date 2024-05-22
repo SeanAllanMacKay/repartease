@@ -28,7 +28,7 @@ export const GET = async <T = {}>({
     );
 
     const response = await fetch(
-      `${config?.host ?? ""}/api${endpoint}${
+      `${config?.host ?? ""}${endpoint}${
         queryParamString !== "?" ? queryParamString : ""
       }`,
       {

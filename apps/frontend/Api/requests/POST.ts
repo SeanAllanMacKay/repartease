@@ -13,7 +13,7 @@ export const POST = async <T = {}>({
   body,
 }: POSTProps): Promise<APIResponse & T> => {
   try {
-    const response = await fetch(`${config?.host ?? ""}/api${endpoint}`, {
+    const response = await fetch(`${config?.host ?? ""}${endpoint}`, {
       method: "POST",
       credentials: "include",
       headers: {

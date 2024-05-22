@@ -222,7 +222,7 @@ export const GameProvider = ({
             apiKey: PUSHER_KEY,
             cluster: PUSHER_CLUSTER,
             onAuthorizer: async (channelName: string, socketId: string) => {
-              const response = await fetch(`${API_URL}/api/pusher/auth`, {
+              const response = await fetch(`${API_URL}/pusher/auth`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

@@ -9,7 +9,10 @@ import routers from "./routers";
 import { pusher } from "@services/sockets";
 
 // env variables
+const NODE_ENV = process.env["NODE_ENV"] || "";
+const WEB_PORT = process.env["WEB_PORT"] || "";
 const NGROK_DOMAIN = process.env["NGROK_DOMAIN"] || "";
+const PORT = process.env["PORT"] || 8080;
 
 // Create server
 const app = express();
@@ -20,10 +23,15 @@ process.on("uncaughtException", function (err) {
   console.error(err);
 });
 
+const CORSOrigins =
+  NODE_ENV === "development"
+    ? [NGROK_DOMAIN, WEB_PORT]
+    : ["https://repartease.com"];
+
 // Required to allow requests from frontend
 app.use(
   cors({
-    origin: [NGROK_DOMAIN, "https://www.repartease.com"],
+    origin: CORSOrigins,
     credentials: true,
   })
 );
@@ -50,10 +58,8 @@ database
     console.log("Database connected");
 
     // Start server
-    server.listen(process.env.API_PORT || 80, () => {
-      console.log(
-        `Server online: connected to port ${process.env.API_PORT || 80}`
-      );
+    server.listen(PORT, () => {
+      console.log(`Server online: connected to port ${PORT}`);
 
       app.use("/", routers);
     });

@@ -13,7 +13,7 @@ export const PUT = async <T = {}>({
   body,
 }: PUTProps): Promise<APIResponse & T> => {
   try {
-    const response = await fetch(`${config?.host ?? ""}/api${endpoint}`, {
+    const response = await fetch(`${config?.host ?? ""}${endpoint}`, {
       method: "PUT",
       credentials: "include",
       headers: {

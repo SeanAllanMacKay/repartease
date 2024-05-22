@@ -21,7 +21,10 @@ const database_1 = require("./database");
 const routers_1 = __importDefault(require("./routers"));
 const sockets_1 = require("./services/sockets");
 // env variables
+const NODE_ENV = process.env["NODE_ENV"] || "";
+const WEB_PORT = process.env["WEB_PORT"] || "";
 const NGROK_DOMAIN = process.env["NGROK_DOMAIN"] || "";
+const PORT = process.env["PORT"] || 8080;
 // Create server
 const app = (0, express_1.default)();
 const server = new http_1.Server(app);
@@ -29,9 +32,12 @@ const server = new http_1.Server(app);
 process.on("uncaughtException", function (err) {
     console.error(err);
 });
+const CORSOrigins = NODE_ENV === "development"
+    ? [NGROK_DOMAIN, WEB_PORT]
+    : ["https://repartease.com"];
 // Required to allow requests from frontend
 app.use((0, cors_1.default)({
-    origin: [NGROK_DOMAIN, "https://www.repartease.com"],
+    origin: CORSOrigins,
     credentials: true,
 }));
 // Required to allow storing cookies
@@ -52,8 +58,8 @@ database_1.database
     .once("open", () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Database connected");
     // Start server
-    server.listen(process.env.API_PORT || 80, () => {
-        console.log(`Server online: connected to port ${process.env.API_PORT || 80}`);
+    server.listen(PORT, () => {
+        console.log(`Server online: connected to port ${PORT}`);
         app.use("/", routers_1.default);
     });
 }));
