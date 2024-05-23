@@ -3,9 +3,8 @@ import { Stack, Slot } from "expo-router";
 import { initialize } from "Api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { UserContext, UserProvider } from "Contexts/UserContext";
-import { Header } from "Components/Header";
+import { RevenueCatProvider } from "Contexts/RevenueCatContext";
 import { Button } from "Components/Button";
-import { View } from "react-native";
 import { Menu } from "Components/Menu";
 import { Text } from "Components/Text";
 
@@ -72,10 +71,12 @@ const Content = () => {
 
 export default function Layout() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <Content />
-      </UserProvider>
-    </QueryClientProvider>
+    <RevenueCatProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserProvider>
+          <Content />
+        </UserProvider>
+      </QueryClientProvider>
+    </RevenueCatProvider>
   );
 }

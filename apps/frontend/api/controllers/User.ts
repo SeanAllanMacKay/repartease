@@ -2,6 +2,21 @@ import { GET, POST, PUT } from "../requests";
 import { config } from "../config";
 
 export const User = {
+  signUp: async ({ email, password }: { email: string; password: string }) => {
+    try {
+      return await POST<{
+        user: { _id: string; email: string; games: string[] };
+        token: string;
+      }>({
+        endpoint: "/user",
+        body: { email, password },
+      });
+    } catch (caught) {
+      console.error(caught);
+      throw caught;
+    }
+  },
+
   login: async ({
     email,
     password,
