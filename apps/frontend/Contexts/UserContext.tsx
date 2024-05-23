@@ -14,11 +14,13 @@ type UserType = {
 
 export const UserContext = createContext<{
   user: UserType | undefined;
+  onSignUp: (loginProps: { email: string; password: string }) => Promise<void>;
   onLogin: (loginProps: { email: string; password: string }) => Promise<void>;
   onLogout: () => void;
   isLoading: boolean;
 }>({
   user: undefined,
+  onSignUp: async () => {},
   onLogin: async () => {},
   onLogout: () => {},
   isLoading: true,
@@ -33,6 +35,7 @@ export const UserProvider = ({ children }: PropsWithChildren<{}>) => {
       return User.login();
     },
     staleTime: Infinity,
+    retry: false,
   });
 
   const mutation = useMutation({
@@ -60,6 +63,35 @@ export const UserProvider = ({ children }: PropsWithChildren<{}>) => {
     },
   });
 
+  const signUpMutation = useMutation({
+    mutationKey: ["user", "sign-up"],
+    mutationFn: async ({
+      ...restArgs
+    }: {
+      email: string;
+      password: string;
+    }) => {
+      const { email, password } = restArgs;
+
+      return await User.signUp({ email, password });
+    },
+    onSuccess: ({ user }) => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+
+      queryClient.setQueryData(["user"], user);
+    },
+  });
+
+  const onSignUp = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    signUpMutation.mutate({ email, password });
+  };
+
   const onLogin = async ({
     email,
     password,
@@ -67,7 +99,6 @@ export const UserProvider = ({ children }: PropsWithChildren<{}>) => {
     email: string;
     password: string;
   }) => {
-    console.log({ email, password });
     mutation.mutate({ dispatch: "login", email, password });
   };
 
@@ -79,6 +110,7 @@ export const UserProvider = ({ children }: PropsWithChildren<{}>) => {
     <UserContext.Provider
       value={{
         user: query.data?.user,
+        onSignUp,
         onLogin,
         onLogout,
         isLoading: query.isLoading,

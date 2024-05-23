@@ -2,8 +2,6 @@ import { Router } from "express";
 
 import { createUser } from "@actions/user";
 
-import { verifyToken } from "@services/auth";
-
 import loginRouter from "./login";
 import logoutRouter from "./logout";
 import validateUsernameRouter from "./validate-username";

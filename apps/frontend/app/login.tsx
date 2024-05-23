@@ -6,6 +6,9 @@ import { Form, useForm } from "Components/Form";
 import { FormField } from "Components/FormField";
 import { TextInput } from "Components/TextInput";
 import { Text } from "Components/Text";
+import { Tabs, Tab } from "Components/Tabs";
+import { View } from "react-native";
+import { User } from "../Api/controllers";
 
 import { UserContext } from "Contexts/UserContext";
 
@@ -15,21 +18,17 @@ import {
   isPasswordInvalid,
 } from "@repartease/validators";
 
-export default function Login() {
-  const { user, onLogin, isLoading } = useContext(UserContext);
+const LoginForm = () => {
+  const { onLogin, isLoading } = useContext(UserContext);
 
   const form = useForm<{ email: string; password: string }>();
 
-  const onSubmit = form.handleSubmit(async (values) => {
+  const onLoginCallback = form.handleSubmit(async (values) => {
     await onLogin(values);
   });
 
-  if (user) {
-    return <Redirect href="/" />;
-  }
-
   return (
-    <Layout>
+    <>
       <Form form={form}>
         <FormField
           name="email"
@@ -50,11 +49,86 @@ export default function Login() {
       <Button
         isFluid={false}
         label="Log In"
-        onPress={onSubmit}
+        onPress={onLoginCallback}
         isDisabled={isLoading}
       />
+    </>
+  );
+};
 
-      <Text>If you don't have an account, this'll make one for you.</Text>
+const SignUpForm = () => {
+  const { onSignUp } = useContext(UserContext);
+
+  const form = useForm<{ email: string; password: string }>();
+
+  const onSignUpCallback = form.handleSubmit(async (values) => {
+    await onSignUp(values);
+  });
+
+  return (
+    <>
+      <Form form={form}>
+        <FormField
+          name="email"
+          label="Email"
+          validate={{ isRequiredInvalid, isEmailInvalid }}
+          component={TextInput}
+        />
+
+        <FormField
+          name="password"
+          label="Password"
+          validate={{ isRequiredInvalid, isPasswordInvalid }}
+          component={TextInput}
+          variant="password"
+        />
+
+        <FormField
+          name="verify-password"
+          label="Verify Password"
+          validate={{
+            isRequiredInvalid,
+            isPasswordInvalid,
+            isPasswordMatch: (verify, { password }) => {
+              if (password !== verify) {
+                return "These passwords don't match";
+              }
+            },
+          }}
+          component={TextInput}
+          variant="password"
+        />
+      </Form>
+
+      <Button
+        isFluid={false}
+        label="Sign Up"
+        onPress={onSignUpCallback}
+        isDisabled={form.formState.isSubmitting}
+      />
+    </>
+  );
+};
+
+export default function Login() {
+  const { user } = useContext(UserContext);
+
+  if (user) {
+    return <Redirect href="/" />;
+  }
+
+  return (
+    <Layout>
+      <View style={{ height: "100%", paddingVertical: 24 }}>
+        <Tabs>
+          <Tab id="log-in" label="Log In">
+            <LoginForm />
+          </Tab>
+          <Tab id="sign-up" label="Sign Up">
+            <SignUpForm />
+          </Tab>
+        </Tabs>
+      </View>
     </Layout>
   );
 }
