@@ -23,12 +23,18 @@
     "staging": {
       "extends": "monorepo",
       "distribution": "internal",
-      "channel": "staging"
+      "channel": "staging",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://barnacle-prompt-preferably.ngrok-free.app"
+      }
     },
     "production": {
       "extends": "monorepo",
       "distribution": "store",
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "http://www.repartease.com"
+      }
     }
   }
 }
