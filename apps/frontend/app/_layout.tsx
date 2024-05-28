@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Stack, Slot } from "expo-router";
+import React, { useContext, useState, useEffect } from "react";
+import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import { initialize } from "Api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { UserContext, UserProvider } from "Contexts/UserContext";
@@ -16,9 +18,25 @@ initialize({
   config: { host: API_URL },
 });
 
+SplashScreen.preventAutoHideAsync();
+
 const Content = () => {
+  const [fontsLoaded, fontError] = useFonts({
+    "Karmatic Arcade": require("../assets/karmatic_arcade.ttf"),
+  });
+
   const { user, onLogout } = useContext(UserContext);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
 
   return (
     <>
@@ -27,6 +45,9 @@ const Content = () => {
           title: "Repartease",
           headerStyle: {
             backgroundColor: "black",
+          },
+          headerTitleStyle: {
+            fontFamily: "Karmatic Arcade",
           },
           headerTintColor: "#fff",
           headerRight: () => (

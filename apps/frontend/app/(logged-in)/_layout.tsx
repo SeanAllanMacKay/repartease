@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Redirect, Slot } from "expo-router";
 import { UserContext } from "Contexts/UserContext";
 import { Text } from "Components/Text";
