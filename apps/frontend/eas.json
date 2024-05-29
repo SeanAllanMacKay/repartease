@@ -33,7 +33,7 @@
       "distribution": "store",
       "channel": "production",
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://www.repartease.com"
+        "EXPO_PUBLIC_API_URL": "https://repartease-server-3bdaf1f61baf.herokuapp.com"
       }
     }
   }
