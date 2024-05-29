@@ -3,6 +3,8 @@ import sgMail from "@sendgrid/mail";
 import accountCreated from "./accountCreated";
 import attemptedSignUp from "./attemptedSignUp";
 import accountVerified from "./accountVerified";
+import requestAccountDeletion from "./requestAccountDeletion";
+import accountDeletionStarted from "./accountDeletionStarted";
 
 const SENDGRID_API_KEY: string = process.env["SENDGRID_API_KEY"] || "";
 const SENDGRID_EMAIL_ADDRESS: string =
@@ -35,6 +37,8 @@ const emailTypes: {
   attemptedSignUp,
   accountCreated,
   accountVerified,
+  requestAccountDeletion,
+  accountDeletionStarted,
 };
 
 export default async ({

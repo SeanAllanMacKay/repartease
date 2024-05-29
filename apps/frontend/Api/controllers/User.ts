@@ -1,5 +1,4 @@
 import { GET, POST, PUT } from "../requests";
-import { config } from "../config";
 
 export const User = {
   signUp: async ({ email, password }: { email: string; password: string }) => {
@@ -57,5 +56,17 @@ export const User = {
     await POST({
       endpoint: "/user/validate-username",
       body: { username, userId },
+    }),
+
+  requestAccountDeletion: async ({
+    email,
+    reason,
+  }: {
+    email: string;
+    reason?: string;
+  }) =>
+    await POST({
+      endpoint: "/user/request-account-deletion",
+      body: { email, reason },
     }),
 };

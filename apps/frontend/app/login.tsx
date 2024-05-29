@@ -5,10 +5,8 @@ import { Button } from "Components/Button";
 import { Form, useForm } from "Components/Form";
 import { FormField } from "Components/FormField";
 import { TextInput } from "Components/TextInput";
-import { Text } from "Components/Text";
 import { Tabs, Tab } from "Components/Tabs";
 import { View } from "react-native";
-import { User } from "../Api/controllers";
 
 import { UserContext } from "Contexts/UserContext";
 

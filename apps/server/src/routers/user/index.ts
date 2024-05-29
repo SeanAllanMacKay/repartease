@@ -5,6 +5,7 @@ import { createUser } from "@actions/user";
 import loginRouter from "./login";
 import logoutRouter from "./logout";
 import validateUsernameRouter from "./validate-username";
+import requestAccountDeletionRouter from "./request-account-deletion";
 import userIdRouter from "./[userId]";
 
 const router = Router({ mergeParams: true });
@@ -45,5 +46,6 @@ router.use("/login", loginRouter);
 router.use("/logout", logoutRouter);
 router.use("/validate-username", validateUsernameRouter);
 router.use("/:userId", userIdRouter);
+router.use("/request-account-deletion", requestAccountDeletionRouter);
 
 export default router;
