@@ -3,6 +3,7 @@
     "name": "repartease",
     "slug": "repartease",
     "version": "1.0.0",
+    "scheme": "repartease",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
