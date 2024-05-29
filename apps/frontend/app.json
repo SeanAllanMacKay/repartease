@@ -14,14 +14,16 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#aa00a3"
       },
-      "package": "com.seanmackay.repartease"
+      "package": "com.seanmackay.repartease",
+      "versionCode": 1
     },
     "web": {
       "output": "single",
