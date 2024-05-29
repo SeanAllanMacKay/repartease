@@ -17,16 +17,14 @@
       "policy": "nativeVersion"
     },
     "ios": {
-      "supportsTablet": true,
-      "buildNumber": "1"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#aa00a3"
       },
-      "package": "com.seanmackay.repartease",
-      "versionCode": 1
+      "package": "com.seanmackay.repartease"
     },
     "web": {
       "output": "single",

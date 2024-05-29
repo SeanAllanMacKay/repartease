@@ -35,7 +35,8 @@
       "channel": "production",
       "env": {
         "EXPO_PUBLIC_API_URL": "https://repartease-server-3bdaf1f61baf.herokuapp.com"
-      }
+      },
+      "autoIncrement": true
     }
   }
 }
