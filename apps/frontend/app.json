@@ -13,6 +13,9 @@
       "backgroundColor": "#aa00a3"
     },
     "assetBundlePatterns": ["**/*"],
+    "runtimeVersion": {
+      "policy": "nativeVersion"
+    },
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1"
@@ -33,9 +36,6 @@
       "eas": {
         "projectId": "63453c7b-2733-40bc-a016-6c240f2d8a45"
       }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
     },
     "plugins": [
       "expo-router",
