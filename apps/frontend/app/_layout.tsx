@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { initialize } from "Api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ import { RevenueCatProvider } from "Contexts/RevenueCatContext";
 import { Button } from "Components/Button";
 import { Menu } from "Components/Menu";
 import { Text } from "Components/Text";
+import Purchases, { PRODUCT_CATEGORY } from "react-native-purchases";
 
 const queryClient = new QueryClient();
 
@@ -27,12 +29,28 @@ const Content = () => {
 
   const { user, onLogout } = useContext(UserContext);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const [offerings, setOfferings] = useState([]);
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const products = await Purchases.getProducts(
+          ["1_token", "3_token", "5_token"],
+          PRODUCT_CATEGORY.NON_SUBSCRIPTION
+        );
+
+        setOfferings(products);
+      } catch (caught) {
+        console.error("Error fetching RevenueCat products", caught);
+      }
+    })();
+  }, []);
 
   if (!fontsLoaded && !fontError) {
     return null;
@@ -74,6 +92,14 @@ const Content = () => {
         onClose={() => setIsAccountMenuOpen(false)}
         actions={[
           <Button
+            key="buy-tokens-action"
+            label="🪙 Buy Tokens"
+            onPress={async () => {
+              await Purchases.purchaseStoreProduct(offerings[0]);
+            }}
+            variant="secondary"
+          />,
+          <Button
             key="log-out-action"
             label="Logout"
             onPress={() => {
@@ -84,7 +110,29 @@ const Content = () => {
           />,
         ]}
       >
-        <Text>Email: {user?.email}</Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text variant="label">Email</Text>
+          <Text variant="body">{user?.email}</Text>
+        </View>
+
+        <View style={{ height: 20 }} />
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text variant="label">Tokens</Text>
+          <Text>{user?.tokens || 0}</Text>
+        </View>
       </Menu>
     </>
   );

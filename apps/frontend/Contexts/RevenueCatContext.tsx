@@ -10,17 +10,19 @@ const APIKeys = {
 
 export const RevenueCatProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
-    const setup = async () => {
-      if (APIKeys.google && Platform.OS == "android") {
-        await Purchases.configure({ apiKey: APIKeys.google });
+    (async () => {
+      try {
+        if (APIKeys.google && Platform.OS == "android") {
+          await Purchases.configure({ apiKey: APIKeys.google });
+        }
+      } catch (caught) {
+        console.error("Error initializing RevenueCat", caught);
       }
-    };
+    })();
 
     if (Platform.OS !== "web") {
       Purchases.setLogLevel(LOG_LEVEL.WARN);
     }
-
-    setup().catch(console.log);
   }, []);
 
   return <>{children}</>;
