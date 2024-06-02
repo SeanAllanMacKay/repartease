@@ -28,6 +28,8 @@ export const Text = ({
   isUppercase = false,
   isCenter = false,
   isBlurred = false,
+  font = undefined,
+  size = 14,
 }: PropsWithChildren<{
   variant?: TextVariant;
   color?: string;
@@ -35,6 +37,8 @@ export const Text = ({
   isUppercase?: boolean;
   isCenter?: boolean;
   isBlurred?: boolean;
+  font?: "Batuphat Script" | "Karmatic Arcade";
+  size?: number;
 }>) => {
   return (
     <ConditionallyWrappedLink href={href}>
@@ -46,6 +50,8 @@ export const Text = ({
             color,
             textTransform: isUppercase ? "uppercase" : "none",
             textAlign: isCenter ? "center" : "auto",
+            fontFamily: font,
+            fontSize: size,
           },
         ]}
       >
@@ -67,7 +73,6 @@ export const Text = ({
 };
 
 const styles = StyleSheet.create({
-  text: { fontWeight: "bold" },
   header: { fontSize: 32 },
   title: { fontSize: 24 },
   body: { fontSize: 16 },

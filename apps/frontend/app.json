@@ -40,7 +40,10 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/karmatic_arcade.ttf"]
+          "fonts": [
+            "./assets/karmatic_arcade.ttf",
+            "./assets/batuphat_script.otf"
+          ]
         }
       ]
     ],

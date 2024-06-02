@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { initialize } from "Api";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -25,6 +25,7 @@ SplashScreen.preventAutoHideAsync();
 const Content = () => {
   const [fontsLoaded, fontError] = useFonts({
     "Karmatic Arcade": require("../assets/karmatic_arcade.ttf"),
+    "Batuphat Script": require("../assets/batuphat_script.otf"),
   });
 
   const { user, onLogout } = useContext(UserContext);
@@ -91,14 +92,18 @@ const Content = () => {
         isOpen={isAccountMenuOpen}
         onClose={() => setIsAccountMenuOpen(false)}
         actions={[
-          <Button
-            key="buy-tokens-action"
-            label="🪙 Buy Tokens"
-            onPress={async () => {
-              await Purchases.purchaseStoreProduct(offerings[0]);
-            }}
-            variant="secondary"
-          />,
+          ...(Platform.OS !== "web"
+            ? [
+                <Button
+                  key="buy-tokens-action"
+                  label="🪙 Buy Tokens"
+                  onPress={async () => {
+                    await Purchases.purchaseStoreProduct(offerings[0]);
+                  }}
+                  variant="secondary"
+                />,
+              ]
+            : []),
           <Button
             key="log-out-action"
             label="Logout"
