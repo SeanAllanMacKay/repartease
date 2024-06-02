@@ -6,7 +6,7 @@ export interface UserType {
   password: string;
   isVerified: boolean;
   games: string[];
-  tickets: number;
+  tokens: number;
 }
 
 //@ts-ignore

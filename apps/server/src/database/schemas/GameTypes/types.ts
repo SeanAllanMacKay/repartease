@@ -2,6 +2,7 @@ import type { Document, Model } from "mongoose";
 
 export interface GameTypeType {
   name: string;
+  cost: number;
 }
 
 //@ts-ignore

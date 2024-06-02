@@ -13,6 +13,7 @@ const userSchema = new Schema<UserDocument>(
     password: { type: String, required: true },
     isVerified: { type: Boolean, required: true },
     games: [Schema.Types.ObjectId],
+    tokens: Number,
   },
   { collection: "Users" }
 );

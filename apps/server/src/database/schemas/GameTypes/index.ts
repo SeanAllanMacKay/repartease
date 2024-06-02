@@ -9,6 +9,7 @@ const { Schema } = mongoose;
 const gameTypeSchema = new Schema<GameTypeDocument>(
   {
     name: { type: String, required: true, unique: true },
+    cost: { type: Number, required: true },
   },
   { collection: "GameTypes" }
 );

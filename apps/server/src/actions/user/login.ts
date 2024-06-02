@@ -26,7 +26,12 @@ export const login = async ({ email, password }: LoginProps): Promise<any> => {
     return {
       status: 200,
       message: "Logged in",
-      user: { email: user.email, _id: user._id, games: user.games },
+      user: {
+        email: user.email,
+        _id: user._id,
+        games: user.games,
+        tokens: user.tokens,
+      },
     };
   } catch (caught: any) {
     const {

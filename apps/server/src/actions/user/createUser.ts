@@ -39,6 +39,7 @@ export const createUser = async ({
       password: hashedPassword,
       isVerified: false,
       games: [],
+      tokens: 3,
     });
 
     return { status: 201, message: "User created", user };
