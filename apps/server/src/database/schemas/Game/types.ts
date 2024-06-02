@@ -3,6 +3,7 @@ import type { Document, Model } from "mongoose";
 export interface GameEntityType {
   owner: string;
   gameCode: string;
+  variant: "repartease" | "wavelength";
   players: {
     order: number;
     playerName: string;

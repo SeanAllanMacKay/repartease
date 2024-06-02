@@ -47,9 +47,10 @@ export const createGame = async ({
     gameCode,
     players,
     status: "active",
+    variant: "repartease",
     rounds: [
       {
-        prompt: await getPrompt(),
+        prompt: await getPrompt({ variant: "repartease", pastPrompts: [] }),
         responses: [],
         status: "submission",
         activePlayer: playerId,

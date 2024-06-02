@@ -53,7 +53,10 @@ export const selectWinner = async ({
   }
 
   game.rounds.push({
-    prompt: await getPrompt(),
+    prompt: await getPrompt({
+      variant: "repartease",
+      pastPrompts: game.rounds.map(({ prompt }) => prompt),
+    }),
     responses: [],
     status: "submission",
     activePlayer: game?.players?.[newTurnIndex]?.playerId,

@@ -25,6 +25,7 @@ export const getActiveGames = async ({
       owner: 1,
       _id: 1,
       rounds: 1,
+      variant: 1,
     }
   )
     .sort({ createdAt: -1 })

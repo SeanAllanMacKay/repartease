@@ -10,6 +10,7 @@ const gameSchema = new Schema<GameDocument>(
   {
     owner: { type: String, required: true },
     gameCode: { type: String, required: true },
+    variant: { type: String, required: true },
     players: [
       {
         order: Number,

@@ -20,7 +20,7 @@ export const startGame = async ({
 
   if (!game.rounds.length) {
     game.rounds.push({
-      prompt: await getPrompt(),
+      prompt: await getPrompt({ variant: "repartease", pastPrompts: [] }),
       responses: [],
       status: "submission",
     });

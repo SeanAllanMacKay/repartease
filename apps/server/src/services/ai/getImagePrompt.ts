@@ -1,6 +1,6 @@
-import { commonAdjectives, openai } from ".";
+import { openai } from ".";
 
-const imageAdjectives = [...commonAdjectives, "ridiculous", "wacky", "absurd"];
+const imageAdjectives = ["ridiculous", "wacky", "absurd"];
 
 const excludedWords = [
   "clown",

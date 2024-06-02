@@ -18,7 +18,8 @@ export const getGame = async ({
     throw { error: "There was an error fetching this game.", status: 404 };
   }
 
-  const { _id, owner, players, status, rounds, createdAt, updatedAt } = game;
+  const { _id, owner, players, status, rounds, createdAt, updatedAt, variant } =
+    game;
 
   const currentRound = rounds.pop();
 
@@ -37,6 +38,7 @@ export const getGame = async ({
     game: {
       _id,
       owner,
+      variant,
       status,
       rounds: [...rounds, currentRound],
       createdAt,

@@ -1,8 +1,5 @@
-import { getTextPrompt, getImagePrompt } from "@services/ai";
-
-const getReparteasePrompt = async () => {
-  return await getTextPrompt();
-};
+import { getImagePrompt } from "@services/ai";
+import { getReparteasePrompt } from "./getReparteasePrompt";
 
 const getPicAndItDidntHappenPrompt = async () => {
   return await getImagePrompt();
@@ -13,6 +10,12 @@ const promptTypeFunctionMapping = {
   "Pic And It Didn't Happen": getPicAndItDidntHappenPrompt,
 };
 
-export const getPrompt = async () => {
-  return await getReparteasePrompt();
+export const getPrompt = async ({
+  variant,
+  pastPrompts,
+}: {
+  variant: string;
+  pastPrompts: string[];
+}) => {
+  return await getReparteasePrompt({ pastPrompts });
 };
