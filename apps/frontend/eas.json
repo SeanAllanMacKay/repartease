@@ -23,7 +23,7 @@
     },
     "staging": {
       "extends": "monorepo",
-      "distribution": "internal",
+      "distribution": "store",
       "channel": "staging",
       "env": {
         "EXPO_PUBLIC_API_URL": "https://barnacle-prompt-preferably.ngrok-free.app"
