@@ -108,6 +108,9 @@ export const Menu = ({
     actions: {
       padding: 16,
     },
+    actionSpacing: {
+      marginBottom: 16,
+    },
   });
 
   return (
@@ -164,7 +167,17 @@ export const Menu = ({
           <View style={styles.body}>{children}</View>
 
           {actions?.length ? (
-            <View style={styles.actions}>{actions}</View>
+            <View style={styles.actions}>
+              {actions.map((action, index) =>
+                index !== actions?.length - 1 ? (
+                  <View style={styles.actionSpacing} key={`actions-${index}`}>
+                    {action}
+                  </View>
+                ) : (
+                  action
+                )
+              )}
+            </View>
           ) : null}
         </View>
       </Animated.View>

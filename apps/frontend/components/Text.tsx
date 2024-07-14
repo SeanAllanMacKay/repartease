@@ -52,6 +52,7 @@ export const Text = ({
             textAlign: isCenter ? "center" : "auto",
             fontFamily: font,
             fontSize: size,
+            fontWeight: "bold",
           },
         ]}
       >
