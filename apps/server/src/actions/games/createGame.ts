@@ -34,6 +34,10 @@ export const createGame = async ({
     throw { error: "There was an error creating the game.", status: 500 };
   }
 
+  if (!user?.tokens) {
+    throw { error: "Not enough tokens.", status: 400 };
+  }
+
   const players = [
     { order: 1, playerId, playerName, points: 0, status: "active" },
   ];
@@ -63,6 +67,8 @@ export const createGame = async ({
   if (!game) {
     throw { error: "There was an error creating the game.", status: 500 };
   }
+
+  user.tokens = user.tokens - 1;
 
   user.games.push(game._id);
 
